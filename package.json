@@ -35,6 +35,8 @@
     "express": "^5.1.0",
     "express-rate-limit": "^8.0.1",
     "http-status-codes": "^2.3.0",
+    "js-yaml": "^4.1.0",
+    "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0"
   },
   "devDependencies": {
