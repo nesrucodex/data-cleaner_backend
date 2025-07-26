@@ -1,0 +1,141 @@
+2025-07-26 17:07:25 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-07-26 17:07:25 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-07-26 17:07:35 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-07-26 17:07:42 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-07-26 17:07:42 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-07-26 17:07:50 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-07-26 17:07:57 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-07-26 17:07:57 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/generated/prisma/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-07-26 17:32:15 [error]: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1907:16)
+    at listenInCluster (node:net:1964:12)
+    at Server.listen (node:net:2066:7)
+    at startApp (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/server.js:14:12)
+    at Object.<anonymous> (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/server.js:20:1)
+    at Module._compile (node:internal/modules/cjs/loader:1546:14)
+    at Object..js (node:internal/modules/cjs/loader:1689:10)
+    at Module.load (node:internal/modules/cjs/loader:1318:32)
+    at Function._load (node:internal/modules/cjs/loader:1128:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:315:14)
+2025-07-26 17:38:36 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:121:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:121:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:121:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:130:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/controllers/health.controller.js:14:5
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/utils/asyncHandler.js:7:13
+2025-07-26 17:38:36 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `shinkansen.proxy.rlwy.net:11747`
+
+Please make sure your database server is running at `shinkansen.proxy.rlwy.net:11747`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:121:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:121:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:121:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:130:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/controllers/health.controller.js:14:5
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/utils/asyncHandler.js:7:13
