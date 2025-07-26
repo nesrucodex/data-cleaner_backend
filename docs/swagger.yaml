@@ -1,0 +1,23 @@
+openapi: 3.0.0
+info:
+  title: Azure Data Cleaner API
+  version: 1.0.0
+  description: Documentation for public endpoints
+
+servers:
+  - url: /api/v1
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: Server is alive
+
+  /:
+    get:
+      summary: Public API index
+      responses:
+        "200":
+          description: Lists public endpoints
