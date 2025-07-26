@@ -1,2 +1,10 @@
 2025-07-26 17:45:14 [info]: 🚀 Server running at http://localhost:3000
 2025-07-26 17:45:16 [info]: 🛑 Received SIGINT — shutting down...
+2025-07-26 17:50:30 [info]: 🚀 Server running at http://localhost:3000
+2025-07-26 17:51:48 [info]: 🛑 Received SIGINT — shutting down...
+2025-07-26 17:51:48 [info]: ✅ HTTP server closed
+2025-07-26 17:51:48 [info]: 🗃️ Prisma disconnected
+2025-07-26 17:52:01 [info]: 🚀 Server running at http://localhost:3000
+2025-07-26 17:53:05 [info]: 🛑 Received SIGINT — shutting down...
+2025-07-26 17:53:05 [info]: ✅ HTTP server closed
+2025-07-26 17:53:05 [info]: 🗃️ Prisma disconnected
