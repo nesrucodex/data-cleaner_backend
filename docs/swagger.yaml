@@ -14,10 +14,3 @@ paths:
       responses:
         "200":
           description: Server is alive
-
-  /:
-    get:
-      summary: Public API index
-      responses:
-        "200":
-          description: Lists public endpoints
