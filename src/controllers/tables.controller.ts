@@ -4,7 +4,7 @@ import APIResponseWriter from "../utils/apiResponseWriter";
 import expressAsyncWrapper from "../utils/asyncHandler";
 import { queryValidation } from "../validations";
 import zodErrorFmt from "../utils/zodErrorFmt";
-import { getPrismaTableNames } from "../libs/prisma-tables";
+import { TABLES } from "../constants";
 
 // Define a type for models that have findMany
 type FindManyModel = {
@@ -13,7 +13,7 @@ type FindManyModel = {
 
 export const getPaginatedTableController = expressAsyncWrapper(
   async (req, res) => {
-    const allowedTables = await getPrismaTableNames();
+    const allowedTables = TABLES;
 
     const validationResult = queryValidation.safeParse(req.query);
     if (!validationResult.success) {

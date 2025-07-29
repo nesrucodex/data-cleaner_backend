@@ -1,0 +1,18 @@
+2025-07-29 14:37:04 [error]: PrismaClientInitializationError: 
+Invalid `table.findMany()` invocation in
+/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/controllers/tables.controller.js:45:33
+
+  42         statusCode: http_status_codes_1.StatusCodes.BAD_REQUEST,
+  43     });
+  44 }
+→ 45 const results = await table.findMany(
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:121:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:121:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:121:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/@prisma/client/runtime/library.js:130:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/config/db.js:21:20
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/controllers/tables.controller.js:45:21
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/dist/utils/asyncHandler.js:7:13
