@@ -15,7 +15,7 @@ export function startHealthCheckCron(url: string, shouldStart: boolean) {
         response.status
       );
     } catch (error: any) {
-      console.error(
+      console.warn(
         `[${new Date().toISOString()}] Health check failed:`,
         error.message
       );

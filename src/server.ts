@@ -12,7 +12,7 @@ function startApp() {
   });
 
   // Register shutdown hooks
-  registerSignalHandlers(server, prisma);
+  // registerSignalHandlers(server, prisma);
 }
 
 startApp();
