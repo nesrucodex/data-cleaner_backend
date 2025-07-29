@@ -4,8 +4,10 @@ import cors from "cors";
 import expressRouteErrorHandlerMiddleware from "./middlewares/expressRouteErrorHandler";
 import rateLimiter from "./middlewares/rateLimiter";
 
-import { swaggerRoute, healthRoute } from "./routes";
+import { swaggerRoute, healthRoute, tablesRoute } from "./routes";
 import path from "path";
+import { HEALTH_CHECK_URL, NODE_ENV } from "./config/env";
+import { startHealthCheckCron } from "./crons";
 
 const app = express();
 
@@ -28,6 +30,11 @@ app.use("/docs", swaggerRoute);
 
 // ❤️ Health check endpoint (under versioned API namespace)
 app.use("/api/v1/health", healthRoute);
+app.use("/api/v1/tables", tablesRoute);
+
+if (NODE_ENV !== "development" && HEALTH_CHECK_URL) {
+  startHealthCheckCron(HEALTH_CHECK_URL, true);
+}
 
 // 🧯 Global error handling middleware (handles thrown errors or rejected promises)
 app.use(expressRouteErrorHandlerMiddleware);

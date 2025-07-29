@@ -2,7 +2,8 @@ openapi: 3.0.0
 info:
   title: Azure Data Cleaner API
   version: 1.0.0
-  description: Documentation for public endpoints
+  description: |
+    Documentation for public endpoints.
 
 servers:
   - url: /api/v1
@@ -10,7 +11,174 @@ servers:
 paths:
   /health:
     get:
+      tags: [System]
       summary: Health check
       responses:
-        "200":
+        200:
           description: Server is alive
+          content:
+            application/json:
+              example: { status: "healthy" }
+
+  /tables/{tableName}:
+    get:
+      tags: [Tables]
+      summary: Get paginated data from any table
+      description: |
+        Retrieve data from any available table with pagination.
+        Available tables include addresses, users, leads_notes, etc.
+      parameters:
+        - $ref: "#/components/parameters/tableName"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/limit"
+      responses:
+        200:
+          description: Successfully retrieved table data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    additionalProperties: true
+              example:
+                success: true
+                message: "addresses retrieved successfully"
+                data:
+                  addresses: [{ id: 1, address_1: "123 Main St" }]
+        400:
+          description: Invalid table name or query parameters
+        500:
+          description: Server error
+
+components:
+  parameters:
+    tableName:
+      name: tableName
+      in: path
+      required: true
+      description: Name of the table to query
+      schema:
+        type: string
+        enum:
+          - addresses
+          - deal_fields
+          - deal_fields_values
+          - deal_sum
+          - dm_browser_token
+          - dm_filters
+          - dm_push_notification
+          - dm_tte_algorithms
+          - dm_tte_fields
+          - dma_menu
+          - dma_menu_actions
+          - dma_reports
+          - email_history
+          - failed_jobs
+          - favourite_report
+          - global_countries
+          - global_currencies
+          - global_entity_contacts
+          - global_industries
+          - global_nace_sections
+          - global_nace_sections_category
+          - global_organisations
+          - global_people
+          - global_timezones
+          - investment_hours
+          - key_library
+          - knowledge_library
+          - lead_record_type
+          - leads_connections
+          - leads_entity_attributes
+          - leads_entity_attributes_value
+          - leads_folders_files
+          - leads_notes
+          - leads_schedule
+          - leads_screens
+          - leads_sss
+          - leads_status
+          - leads_status_temp
+          - leads_tags
+          - leads_tags_assign_to
+          - leads_tickets
+          - leads_tickets_assign_to
+          - leads_tickets_status
+          - leads_transactions
+          - leads_transactions_contacts
+          - ledger_dashboard_widgets
+          - ledger_email_templates
+          - ledger_system_audit
+          - ledgers
+          - ledgers_exchange_rate_settings
+          - ledgers_financial_year
+          - ledgers_role_mapping
+          - ledgers_tags
+          - lock_notes
+          - migrations
+          - org_exchange_ratings
+          - organisation_crm_ids
+          - organisation_statuses
+          - organisations_roles
+          - people_crm_ids
+          - people_roles
+          - people_status
+          - reminders
+          - report_data
+          - report_files
+          - score_library
+          - snap_note
+          - snap_note_to
+          - sold_source
+          - sold_status_sequence
+          - system_menu_actions
+          - system_modules
+          - ticker_information
+          - ticker_tape_broadcast
+          - ticket_priority
+          - user_crm_ids
+          - user_dashboards
+          - user_groups
+          - user_groups_permissions
+          - users
+          - users_apis_access
+          - users_groups_mapping
+          - users_roles
+          - users_roles_mapping
+          - users_roles_permissions
+    page:
+      name: page
+      in: query
+      description: Page number
+      schema:
+        type: integer
+        default: 1
+        minimum: 1
+    limit:
+      name: limit
+      in: query
+      description: Items per page
+      schema:
+        type: integer
+        default: 10
+        minimum: 1
+        maximum: 100
+
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: "Invalid table name"
+        error:
+          type: object
+          additionalProperties: true

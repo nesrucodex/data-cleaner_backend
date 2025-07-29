@@ -7,7 +7,7 @@ type APIResponseWriter<T> = {
   success: boolean;
   message: string;
   data?: T;
-  error?: Error;
+  error?: any;
 };
 
 const APIResponseWriter = <T>({
