@@ -7,9 +7,10 @@
     "dev": "nodemon",
     "build": "tsc",
     "start": "node dist/server.js",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:deploy": "prisma generate && prisma migrate deploy"
+    "prisma:generate": "prisma generate --schema=prisma/dms_prod.prisma && prisma generate --schema=prisma/entities.prod.prisma",
+    "prisma:migrate": "prisma migrate dev --name init --schema=prisma/dms_prod.prisma && prisma migrate dev --name init --schema=prisma/entities.prod.prisma",
+    "prisma:deploy": "npm run prisma:generate && npm run prisma:migrate",
+    "prisma:pull": "prisma db pull --schema=prisma/dms_prod.prisma && prisma db pull --schema=prisma/entities.prod.prisma"
   },
   "keywords": [
     "express",

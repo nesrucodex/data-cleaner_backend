@@ -20,12 +20,47 @@ paths:
             application/json:
               example: { status: "healthy" }
 
-  /tables/{tableName}:
+  /tables:
     get:
       tags: [Tables]
-      summary: Get paginated data from any table
+      summary: Get all allowed tables
+      description: Retrieve list of all available tables in both DMS and Entities databases
+      responses:
+        200:
+          description: Successfully retrieved table list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      dmsTables:
+                        type: array
+                        items:
+                          type: string
+                      entitiesTables:
+                        type: array
+                        items:
+                          type: string
+              example:
+                success: true
+                message: "Tables retrieved successfully"
+                data:
+                  dmsTables: ["addresses", "users", "leads_notes"]
+                  entitiesTables: ["address", "entity", "people"]
+
+  /tables/dms/{tableName}:
+    get:
+      tags: [Tables]
+      summary: Get paginated data from DMS table
       description: |
-        Retrieve data from any available table with pagination.
+        Retrieve data from any available DMS table with pagination.
         Available tables include addresses, users, leads_notes, etc.
       parameters:
         - $ref: "#/components/parameters/tableName"
@@ -46,15 +81,73 @@ paths:
                   data:
                     type: object
                     additionalProperties: true
+
               example:
                 success: true
                 message: "addresses retrieved successfully"
                 data:
                   addresses: [{ id: 1, address_1: "123 Main St" }]
+
         400:
-          description: Invalid table name or query parameters
+          $ref: "#/components/responses/BadRequest"
+        404:
+          $ref: "#/components/responses/NotFound"
         500:
-          description: Server error
+          $ref: "#/components/responses/ServerError"
+
+  /tables/entities/{tableName}:
+    get:
+      tags: [Tables]
+      summary: Get paginated data from Entities table
+      description: |
+        Retrieve data from any available Entities table with pagination.
+        Available tables include address, entity, people, etc.
+      parameters:
+        - $ref: "#/components/parameters/tableNameEntities"
+        - $ref: "#/components/parameters/page"
+        - $ref: "#/components/parameters/limit"
+      responses:
+        200:
+          description: Successfully retrieved table data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    additionalProperties: true
+                  pagination:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      page:
+                        type: integer
+                      limit:
+                        type: integer
+                      totalPages:
+                        type: integer
+              example:
+                success: true
+                message: "address retrieved successfully"
+                data:
+                  address: [{ id: 1, address_line1: "123 Main St" }]
+                pagination:
+                  total: 50
+                  page: 1
+                  limit: 10
+                  totalPages: 5
+        400:
+          $ref: "#/components/responses/BadRequest"
+        404:
+          $ref: "#/components/responses/NotFound"
+        500:
+          $ref: "#/components/responses/ServerError"
 
 components:
   parameters:
@@ -62,7 +155,7 @@ components:
       name: tableName
       in: path
       required: true
-      description: Name of the table to query
+      description: Name of the DMS table to query
       schema:
         type: string
         enum:
@@ -151,6 +244,38 @@ components:
           - users_roles
           - users_roles_mapping
           - users_roles_permissions
+
+    tableNameEntities:
+      name: tableName
+      in: path
+      required: true
+      description: Name of the Entities table to query
+      schema:
+        type: string
+        enum:
+          - address
+          - agency
+          - asset
+          - bank
+          - bank_account
+          - buy
+          - demo_users
+          - entity
+          - entity_contact
+          - entity_mapping
+          - entity_property
+          - entity_risk_and_rates
+          - entity_role
+          - param
+          - param_country
+          - param_sequence
+          - param_table
+          - people
+          - phone
+          - property
+          - rating
+          - role
+
     page:
       name: page
       in: query
@@ -159,6 +284,7 @@ components:
         type: integer
         default: 1
         minimum: 1
+
     limit:
       name: limit
       in: query
@@ -168,6 +294,40 @@ components:
         default: 10
         minimum: 1
         maximum: 100
+
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            success: false
+            message: "Invalid table name or query parameters"
+            error: { details: "Table 'invalid_table' does not exist" }
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            success: false
+            message: "Table not found"
+            error: { details: "Table 'nonexistent_table' was not found" }
+
+    ServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+          example:
+            success: false
+            message: "Internal server error"
+            error: { details: "Database connection failed" }
 
   schemas:
     ErrorResponse:

@@ -1,5 +1,5 @@
 import { StatusCodes } from "http-status-codes";
-import prisma from "../config/db";
+import { dmsPrisma, entitiesPrisma } from "../config/db";
 import APIResponseWriter from "../utils/apiResponseWriter";
 import expressAsyncWrapper from "../utils/asyncHandler";
 import { format, formatDuration, intervalToDuration } from "date-fns";
@@ -7,7 +7,8 @@ import { format, formatDuration, intervalToDuration } from "date-fns";
 export const checkHealthController = expressAsyncWrapper(async (_, res) => {
   const start = Date.now();
 
-  await prisma.$queryRaw`SELECT 1`;
+  await dmsPrisma.$queryRaw`SELECT 1`;
+  await entitiesPrisma.$queryRaw`SELECT 1`;
 
   const latency = Date.now() - start;
 

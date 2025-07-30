@@ -1,0 +1,1613 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/client/dms_prod"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DMS_PROD_DATABASE_URL")
+}
+
+model addresses {
+  id           BigInt                  @id @default(autoincrement())
+  address_1    String?                 @db.VarChar(1000)
+  address_2    String?                 @db.VarChar(1000)
+  address_3    String?                 @db.VarChar(1000)
+  city         String?                 @db.VarChar(255)
+  state_county String?                 @db.VarChar(255)
+  country_id   Int
+  created_by   Int
+  updated_by   Int
+  created_at   DateTime?               @db.Timestamp(0)
+  updated_at   DateTime?               @db.Timestamp(0)
+  postal_code  String?                 @db.VarChar(255)
+  address_type addresses_address_type?
+  entity_id    Int?
+  entity_type  Int                     @default(2)
+  is_delete    Boolean?                @default(false)
+  deleted_at   DateTime?               @db.DateTime(0)
+
+  @@index([entity_id], map: "idx_addresses_entity_id")
+  @@index([entity_id, entity_type], map: "idx_addresses_entity_id_type")
+  @@index([is_delete], map: "idx_addresses_is_delete")
+}
+
+model deal_fields {
+  id                      BigInt    @id @default(autoincrement())
+  ledger_id               BigInt?
+  leads_transactions_id   BigInt?
+  leads_notes_id          BigInt?
+  deals_field_name        String?   @db.VarChar(500)
+  deals_field_type        String?   @db.VarChar(255)
+  deals_field_description String?   @db.Text
+  deals_field_rpa_group   String?   @db.VarChar(500)
+  created_by              BigInt?
+  updated_by              BigInt?
+  created_at              DateTime? @db.Timestamp(0)
+  updated_at              DateTime? @db.Timestamp(0)
+
+  @@index([leads_transactions_id], map: "idx_deal_fields_leads_transactions_id")
+}
+
+model deal_fields_values {
+  id                    BigInt    @id @default(autoincrement())
+  ledger_id             BigInt
+  leads_transactions_id BigInt
+  deal_field_id         BigInt
+  deal_field_value      String    @db.Text
+  pdf_path              String?   @db.VarChar(1200)
+  is_issued             String    @db.VarChar(255)
+  created_by            BigInt?
+  updated_by            BigInt?
+  created_at            DateTime? @db.Timestamp(0)
+  updated_at            DateTime? @db.Timestamp(0)
+  is_algorithm          String?   @db.VarChar(255)
+  is_old                Boolean   @default(false)
+
+  @@index([leads_transactions_id], map: "idx_deal_fields_values_leads_transactions_id")
+}
+
+model deal_sum {
+  id                        BigInt    @id @default(autoincrement())
+  ledger_id                 Int
+  leads_transactions_id     BigInt
+  is_debtor                 Boolean   @default(false)
+  is_creditor               Boolean   @default(false)
+  is_asset                  Boolean   @default(false)
+  debtor_currency_id        Int?
+  creditor_currency_id      Int?
+  asset_currency_id         Int?
+  debtor_amount             Decimal?  @default(0.00) @db.Decimal(15, 2)
+  creditor_amount           Decimal?  @default(0.00) @db.Decimal(15, 2)
+  asset_amount              Decimal?  @default(0.00) @db.Decimal(15, 2)
+  variable_id               Int?
+  record_type_id            Int?
+  probability               Int?
+  monthly_amount            Decimal?  @default(0.00) @db.Decimal(15, 2)
+  purchase_percent          Decimal?  @default(0.00) @db.Decimal(5, 2)
+  sell_rate_percent         Decimal?  @default(0.00) @db.Decimal(5, 2)
+  arrangement_amount        Decimal?  @default(0.00) @db.Decimal(15, 2)
+  arrangement_rate_percent  Decimal?  @default(0.00) @db.Decimal(5, 2)
+  repayment_currency_id     Int?
+  repayment_amount          Decimal?  @default(0.00) @db.Decimal(15, 2)
+  is_commitment             Boolean   @default(false)
+  commitment_amount         Decimal?  @default(0.00) @db.Decimal(15, 2)
+  commitment_rate_percent   Decimal?  @default(0.00) @db.Decimal(5, 2)
+  usage_id                  Int?
+  usage_rate_percent        Decimal?  @default(0.00) @db.Decimal(5, 2)
+  repaid_from_id            Int?
+  over                      Int?
+  non_traded_service_id     Int?
+  non_traded_service_amount Decimal?  @default(0.00) @db.Decimal(15, 2)
+  is_months                 Boolean   @default(false)
+  is_days                   Boolean   @default(false)
+  specific_condition_id     Int?
+  is_documented             Boolean?
+  note                      String?   @db.Text
+  turnover_currency_id      Int?
+  turnover_amount           Decimal?  @default(0.00) @db.Decimal(15, 2)
+  grade                     String?   @db.VarChar(15)
+  gross_margin_percent      Decimal?  @default(0.00) @db.Decimal(5, 2)
+  net_margin_percent        Decimal?  @default(0.00) @db.Decimal(5, 2)
+  class                     String?   @db.VarChar(15)
+  bank_id                   Int?
+  is_debenture              Boolean   @default(false)
+  lone_type_id              Int?
+  is_property               Boolean   @default(false)
+  loan_amount_currency_id   Int?
+  loan_amount               Decimal?  @default(0.00) @db.Decimal(15, 2)
+  is_buy_out                Boolean   @default(false)
+  account_system_id         Int?
+  is_invoicing              Boolean   @default(false)
+  pricing_method_id         Int?
+  last_increase_date        DateTime? @db.Date
+  file_attachment           String?   @db.VarChar(255)
+  created_by                Int?
+  updated_by                Int?
+  created_at                DateTime? @db.Timestamp(0)
+  updated_at                DateTime? @db.Timestamp(0)
+  specific_condition_text   String?   @db.Text
+  pricing_method_text       String?   @db.Text
+  steps_no                  Int       @default(0)
+  deadline_date             DateTime? @db.Timestamp(0)
+  a_etr_sell_rate           Decimal?  @default(0.00) @db.Decimal(5, 2)
+  b_etr_sell_rate           Decimal?  @default(0.00) @db.Decimal(5, 2)
+  d_etr_sell_rate           Decimal?  @default(0.00) @db.Decimal(5, 2)
+  future_d_etr_sell_rate    Decimal?  @default(0.00) @db.Decimal(5, 2)
+  dso                       Decimal?  @default(0.00) @db.Decimal(5, 2)
+
+  @@index([leads_transactions_id], map: "idx_deal_sum_leads_transactions_id")
+}
+
+model dm_browser_token {
+  id         BigInt    @id @default(autoincrement())
+  user_id    BigInt?   @default(0)
+  token      String?   @db.VarChar(300)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  deleted_at DateTime? @db.Timestamp(0)
+}
+
+model dm_filters {
+  id            BigInt    @id @default(autoincrement())
+  user_id       BigInt
+  page          String?   @db.VarChar(255)
+  filter        String?   @db.VarChar(255)
+  value         String?   @db.VarChar(1000)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  deleted_at    DateTime? @db.Timestamp(0)
+  global_toggle Boolean   @default(false)
+  created_by    Int?
+  updated_by    Int?
+  column_state  String?   @db.Text
+}
+
+model dm_push_notification {
+  id           BigInt    @id @default(autoincrement())
+  from_id      BigInt?   @default(0)
+  to_id        BigInt?   @default(0)
+  title        String?   @db.VarChar(200)
+  content      String?   @db.VarChar(400)
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  deleted_at   DateTime? @db.Timestamp(0)
+  type         String?   @db.VarChar(100)
+  reference_id BigInt?
+  link         String?   @db.VarChar(255)
+  multicast_id String?   @db.VarChar(255)
+}
+
+model dm_tte_algorithms {
+  id                 BigInt    @id @default(autoincrement())
+  ledger_id          Int
+  algorithm_name     String    @db.VarChar(255)
+  algo_func_name     String    @db.VarChar(255)
+  readable_format    String    @db.Text
+  algorithm_function String    @db.Text
+  algorithm_json     String    @db.Text
+  used_tte_fields    String?   @db.Text
+  used_algorithms    String?   @db.Text
+  algorithm_desc     String    @db.Text
+  last_parse_result  String    @db.VarChar(255)
+  status             Boolean   @default(false)
+  created_by         BigInt
+  updated_by         BigInt
+  created_at         DateTime? @db.Timestamp(0)
+  updated_at         DateTime? @db.Timestamp(0)
+}
+
+model dm_tte_fields {
+  id            BigInt    @id @default(autoincrement())
+  ledger_id     Int
+  field_name    String    @db.VarChar(255)
+  field_type    String    @db.VarChar(255)
+  default_value String?   @db.VarChar(700)
+  status        Boolean   @default(false)
+  created_by    BigInt
+  updated_by    BigInt
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  description   String?   @db.Text
+  algorithm_id  Int?
+  rpa_group     String?   @db.VarChar(500)
+  rpa_values    String?   @db.VarChar(500)
+}
+
+model dma_menu {
+  id               BigInt             @id @default(autoincrement())
+  title            String             @db.VarChar(255)
+  path             String             @db.VarChar(255)
+  parent_id        BigInt
+  sequence_no      Int
+  created_by       BigInt?
+  updated_by       BigInt?
+  created_at       DateTime?          @db.Timestamp(0)
+  updated_at       DateTime?          @db.Timestamp(0)
+  dma_menu_actions dma_menu_actions[]
+}
+
+model dma_menu_actions {
+  id           BigInt    @id @default(autoincrement())
+  action_name  String    @db.VarChar(255)
+  dma_menu_id  BigInt
+  updated_by   BigInt?
+  created_at   DateTime? @db.Timestamp(0)
+  updated_at   DateTime? @db.Timestamp(0)
+  display_name String?   @db.VarChar(255)
+  dma_menu     dma_menu  @relation(fields: [dma_menu_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "dma_menu_actions_dma_menu_id_foreign")
+
+  @@index([dma_menu_id], map: "dma_menu_actions_dma_menu_id_foreign")
+}
+
+model dma_reports {
+  id                          BigInt   @id @default(autoincrement())
+  ledger_id                   Int
+  user_id                     Int
+  name                        String   @db.VarChar(255)
+  code                        String   @db.VarChar(255)
+  base_currency_id            Int
+  description                 String   @db.Text
+  type                        Int      @db.SmallInt
+  generated_on                DateTime @db.Timestamp(0)
+  generated_on_options        String   @db.Text
+  generated_on_query          String   @db.Text
+  generated_on_dynamic_values String   @db.Text
+  is_favorite                 Int      @default(0)
+  status                      Boolean
+  last_generated_by           BigInt
+  last_generated_at           DateTime @db.Timestamp(0)
+  created_by                  BigInt
+  updated_by                  BigInt
+  created_at                  DateTime @default(now()) @db.Timestamp(0)
+  updated_at                  DateTime @db.Timestamp(0)
+  global_toggle               Boolean  @default(false)
+  column_settings             String?  @db.Text
+  report_on                   String?  @db.VarChar(50)
+  report_by                   String?  @db.VarChar(50)
+  report_for                  String?  @db.VarChar(50)
+  grid_columns                String?  @db.Text
+}
+
+model email_history {
+  id                    BigInt    @id @default(autoincrement())
+  ledger_id             Int
+  leads_transactions_id BigInt?
+  from_entity_type      Int?
+  from_entity_id        Int?
+  to_entity_type        Int?
+  to_entity_id          Int?
+  organisation_id       Int?
+  people_id             Int?
+  is_sent               Boolean?
+  sent_date             DateTime? @db.Timestamp(0)
+  mail_content          String?   @db.Text
+  created_by            BigInt?
+  updated_by            BigInt?
+  created_at            DateTime? @db.Timestamp(0)
+  updated_at            DateTime? @db.Timestamp(0)
+}
+
+model failed_jobs {
+  id         BigInt   @id @default(autoincrement())
+  connection String   @db.Text
+  queue      String   @db.Text
+  payload    String   @db.Text
+  exception  String   @db.LongText
+  failed_at  DateTime @default(now()) @db.Timestamp(0)
+}
+
+model favourite_report {
+  id         BigInt    @id @default(autoincrement())
+  type       Int       @default(1)
+  report_id  Int
+  created_by Int?
+  updated_by Int?
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model global_countries {
+  id              BigInt    @id @default(autoincrement())
+  country_name    String    @db.VarChar(100)
+  iso_code_alpha2 String    @db.VarChar(2)
+  iso_code_alpha3 String    @db.VarChar(3)
+  dial_code       BigInt?
+  created_by      BigInt?
+  updated_by      BigInt?
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+  time_zone       String?   @db.VarChar(255)
+
+  @@index([id], map: "idx_global_countries_id")
+}
+
+model global_currencies {
+  id              BigInt    @id @default(autoincrement())
+  currency_name   String    @db.VarChar(255)
+  currency_code   String    @db.VarChar(3)
+  status          Boolean   @default(false)
+  created_at      DateTime  @default(now()) @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+  currency_symbol String?   @db.VarChar(10)
+
+  @@index([currency_code], map: "global_currencies_currency_codex")
+  @@index([currency_name], map: "global_currencies_currency_namex")
+  @@index([id], map: "global_currencies_idx")
+}
+
+model global_entity_contacts {
+  id            BigInt    @id @default(autoincrement())
+  entity_type   Int
+  entity_id     Int
+  contact_type  String    @db.VarChar(255)
+  contact_for   String    @db.VarChar(10)
+  contact_value String    @db.VarChar(255)
+  created_by    Int
+  updated_by    Int
+  created_at    DateTime  @default(now()) @db.Timestamp(0)
+  updated_at    DateTime  @default(now()) @db.Timestamp(0)
+  is_delete     Boolean?  @default(false)
+  deleted_at    DateTime? @db.DateTime(0)
+
+  @@index([entity_id], map: "entity_idx")
+  @@index([entity_type, entity_id], map: "idx_gec_entity_type_id")
+  @@index([entity_id], map: "idx_global_entity_contacts_entity_id")
+}
+
+model global_industries {
+  id         BigInt    @id @default(autoincrement())
+  name       String    @db.VarChar(255)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  updated_by BigInt?
+}
+
+model global_nace_sections {
+  id         BigInt    @id @default(autoincrement())
+  code       String?   @db.VarChar(10)
+  section    String    @db.VarChar(255)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  parent_id  Int       @default(0)
+}
+
+model global_nace_sections_category {
+  id            BigInt    @id @default(autoincrement())
+  category_name String?   @db.VarChar(255)
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+}
+
+model global_organisations {
+  id                     BigInt    @id @default(autoincrement())
+  parent_organisation_id Int?
+  organisation_name      String    @db.VarChar(255)
+  trade_name             String?   @db.VarChar(255)
+  fy_start_month         String?   @db.VarChar(255)
+  fy_end_month           String?   @db.VarChar(255)
+  website                String?   @db.VarChar(255)
+  registration_number    String?   @db.VarChar(255)
+  vat_number             String?   @db.VarChar(255)
+  crm_id                 String?   @db.VarChar(255)
+  status_id              Int?
+  registered_country_id  Int
+  creator_ledger_id      Int?
+  created_by             Int?
+  updated_by             Int?
+  created_at             DateTime? @db.Timestamp(0)
+  updated_at             DateTime? @db.Timestamp(0)
+  logo_url               String?   @db.Text
+  industry_id            Int?      @db.SmallInt
+  currency_id            Int?      @db.SmallInt
+  description            String?   @db.Text
+  nace_section_id        Int?      @db.SmallInt
+  revenue_access_number  String?   @db.VarChar(100)
+  exchange_ref_id        String?   @db.VarChar(255)
+  hierarchy_code         String?   @db.VarChar(255)
+  deleted_at             DateTime? @db.Timestamp(0)
+  is_delete              Boolean?  @default(false)
+  leads_transactions_id  BigInt    @default(0)
+  allow_external_app     Boolean   @default(false)
+  proof_of_identity      String?   @db.VarChar(500)
+  proof_of_address       String?   @db.VarChar(500)
+  to_be_deleted          Boolean?  @default(false)
+  merge_with             String?   @db.VarChar(255)
+
+  @@index([id], map: "global_organisations_idx")
+  @@index([organisation_name], map: "global_organisations_organisation_namex")
+  @@index([id], map: "idx_global_org_id")
+  @@index([parent_organisation_id], map: "idx_global_organisations_parent_organisation_id")
+  @@index([parent_organisation_id, is_delete, id], map: "idx_org_parent_delete")
+}
+
+model global_people {
+  id                    BigInt                           @id @default(autoincrement())
+  creator_ledger_id     Int
+  salutation            String?                          @db.VarChar(255)
+  first_name            String?                          @db.VarChar(255)
+  last_name             String?                          @db.VarChar(255)
+  title                 String?                          @db.VarChar(255)
+  date_of_birth         String?                          @db.VarChar(255)
+  pps_number            String?                          @db.VarChar(255)
+  created_by            Int
+  updated_by            Int
+  created_at            DateTime                         @default(now()) @db.Timestamp(0)
+  updated_at            DateTime                         @db.Timestamp(0)
+  former_last_name      String?                          @db.VarChar(100)
+  notes                 String?                          @db.Text
+  ppsn_document_type    Int?                             @db.SmallInt
+  photo_url             String?                          @db.VarChar(255)
+  pronounced            String?                          @db.VarChar(100)
+  signature_attachment  Boolean                          @default(false)
+  crm_id                String?                          @db.VarChar(255)
+  exchange_ref_id       String?                          @db.VarChar(255)
+  industry_id           Int?
+  deleted_at            DateTime?                        @db.Timestamp(0)
+  is_delete             Boolean?                         @default(false)
+  import_people_name    String?                          @db.VarChar(255)
+  leads_transactions_id BigInt                           @default(0)
+  proof_of_identity     global_people_proof_of_identity?
+  proof_of_address      global_people_proof_of_address?
+  status_id             Int?
+
+  @@index([first_name], map: "global_people_first_namex")
+  @@index([id], map: "global_people_idx")
+  @@index([last_name], map: "global_people_last_namex")
+}
+
+model global_timezones {
+  id         BigInt    @id
+  timezone   String    @db.VarChar(255)
+  gmt_offset Int?
+  is_dst     Boolean   @default(false)
+  created_by BigInt
+  updated_by BigInt
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model investment_hours {
+  id                    BigInt    @id @default(autoincrement())
+  ledger_id             BigInt
+  users_id              BigInt
+  leads_transactions_id BigInt?
+  investment_hours      String?   @db.VarChar(255)
+  created_by            BigInt?   @default(0)
+  updated_by            BigInt?   @default(0)
+  created_at            DateTime? @default(now()) @db.Timestamp(0)
+  updated_at            DateTime? @default(now()) @db.Timestamp(0)
+  deleted_at            DateTime? @db.Timestamp(0)
+  page_name             String?   @default("dealdesk") @db.VarChar(255)
+
+  @@index([leads_transactions_id], map: "idx_investment_hours_leads_transactions_id")
+}
+
+model key_library {
+  id                  BigInt    @id @default(autoincrement())
+  ledger_id           BigInt
+  key_subject         String?   @db.Text
+  key_note            String    @db.Text
+  created_by          BigInt?
+  updated_by          BigInt?
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+  lead_transcation_id Int       @default(0)
+  ledgers             ledgers   @relation(fields: [ledger_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "key_library_ledger_id_foreign")
+
+  @@index([lead_transcation_id], map: "idx_key_library_lead_transcation_id")
+  @@index([ledger_id], map: "key_library_ledger_id_foreign")
+}
+
+model knowledge_library {
+  id                       BigInt    @id @default(autoincrement())
+  ledger_id                BigInt?
+  updated_by               BigInt?
+  updated_at               DateTime  @db.Timestamp(0)
+  industry_id              BigInt?
+  leads_notes_id           BigInt?
+  knowledge_subject        String?   @db.VarChar(1000)
+  notes_description        String?   @db.LongText
+  notes_date               DateTime? @db.Timestamp(0)
+  knowledge_group          String?   @db.VarChar(500)
+  deleted_at               DateTime? @db.Timestamp(0)
+  knowledge_classification String?   @db.VarChar(150)
+}
+
+model lead_record_type {
+  id               BigInt    @id @default(autoincrement())
+  record_type_name String?   @db.VarChar(255)
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  sequence         String?   @db.VarChar(800)
+}
+
+model leads_connections {
+  id                      BigInt    @id @default(autoincrement())
+  ledger_id               BigInt
+  leads_transactions_id   BigInt?
+  ledgers_role_mapping_id BigInt?
+  sequence_no             Int?
+  created_by              BigInt?
+  updated_by              BigInt?
+  created_at              DateTime? @db.Timestamp(0)
+  updated_at              DateTime? @db.Timestamp(0)
+  role_id                 BigInt    @default(0)
+  entity_id               BigInt
+  entity_type             Int       @db.SmallInt
+  connection_role_name    String?   @db.VarChar(500)
+  is_delete               Boolean?  @default(false)
+  deleted_at              DateTime? @db.DateTime(0)
+
+  @@index([entity_id], map: "idx_leads_connections_entity_id")
+  @@index([entity_type, entity_id, id], map: "idx_leads_connections_entity_type_entity_id")
+  @@index([entity_id, entity_type], map: "idx_leads_connections_entity_type_id")
+  @@index([leads_transactions_id], map: "idx_leads_connections_leads_transactions_id")
+  @@index([ledgers_role_mapping_id], map: "idx_leads_connections_lrm_id")
+  @@index([ledgers_role_mapping_id, deleted_at, is_delete], map: "idx_leads_connections_lrm_notnull")
+}
+
+model leads_entity_attributes {
+  id                           BigInt   @id @default(autoincrement())
+  leads_entity_attributes_type Int
+  leads_entity_attributes_name String   @db.VarChar(255)
+  is_display                   Boolean  @default(true)
+  created_by                   Int
+  created_at                   DateTime @default(now()) @db.Timestamp(0)
+}
+
+model leads_entity_attributes_value {
+  id                            BigInt    @id @default(autoincrement())
+  ledger_id                     Int
+  leads_transactions_id         BigInt?
+  leads_entity_attributes_id    Int
+  leads_entity_attributes_value String    @db.VarChar(255)
+  created_by                    BigInt?
+  updated_by                    BigInt?
+  created_at                    DateTime? @db.Timestamp(0)
+  updated_at                    DateTime? @db.Timestamp(0)
+  leads_entity_id               Int?      @default(0)
+  deleted_at                    DateTime? @db.Timestamp(0)
+
+  @@index([leads_transactions_id], map: "idx_leads_entity_attributes_value_leads_transactions_id")
+}
+
+model leads_folders_files {
+  id                    BigInt    @id @default(autoincrement())
+  ledger_id             BigInt
+  leads_transactions_id BigInt
+  parent_folder_id      BigInt?
+  attachment_type       String?   @db.VarChar(255)
+  attachment_id         BigInt?
+  sequence_no           BigInt?
+  entity_type           Int       @db.SmallInt
+  entity_name           String    @db.VarChar(255)
+  full_path             String    @db.VarChar(255)
+  is_key_document       Int       @db.SmallInt
+  is_deleted            Boolean   @default(false)
+  deleted_date          DateTime? @db.Timestamp(0)
+  created_by            BigInt?
+  updated_by            BigInt?
+  created_at            DateTime? @db.Timestamp(0)
+  updated_at            DateTime? @db.Timestamp(0)
+  extra_1               String?   @db.VarChar(255)
+  missing_entry         Boolean?  @default(false)
+  leads_notes_id        BigInt?
+  deleted_at            DateTime? @db.Timestamp(0)
+  is_issued             String?   @db.VarChar(255)
+  pdf_path              String?   @db.VarChar(300)
+  full_path_back_up     String?   @db.VarChar(1200)
+  created_by_id         String?   @db.VarChar(50)
+  a_id                  String?   @db.VarChar(50)
+  feed_item_id          String?   @db.VarChar(50)
+  related_record_id     String?   @db.VarChar(50)
+  file_ext              String?   @db.VarChar(50)
+}
+
+model leads_notes {
+  id                    BigInt       @id @default(autoincrement())
+  ledger_id             BigInt
+  leads_transactions_id BigInt
+  notes_flag            Int          @db.SmallInt
+  notes_description     String       @db.LongText
+  notes_date            DateTime?    @db.Timestamp(0)
+  is_tagged             Boolean?     @default(false)
+  is_locked             Boolean?     @default(false)
+  is_knowledge          Boolean?     @default(false)
+  is_deleted            Boolean      @default(false)
+  deleted_date          DateTime?    @db.Timestamp(0)
+  current_bg_color      String?      @db.VarChar(8)
+  previous_bg_color     String?      @db.VarChar(8)
+  file_attachment       String?      @db.VarChar(8)
+  is_autosaved          Boolean      @default(false)
+  autosaved_date        DateTime?    @db.Timestamp(0)
+  is_saved              Boolean      @default(false)
+  saved_date            DateTime     @db.Timestamp(0)
+  is_sent               Boolean      @default(false)
+  sent_date             DateTime     @db.Timestamp(0)
+  created_by            BigInt?
+  updated_by            BigInt?
+  deleted_at            DateTime?    @db.Timestamp(0)
+  created_at            DateTime?    @db.Timestamp(0)
+  updated_at            DateTime?    @db.Timestamp(0)
+  organisation_id       Int?         @default(0)
+  user_id               Int?
+  sent_by               Int?
+  opportunity_name      String?      @db.VarChar(255)
+  link_url              String?      @db.VarChar(800)
+  a_id                  String?      @db.VarChar(100)
+  feed_item_id          String?      @db.VarChar(100)
+  parent_id             String?      @db.VarChar(100)
+  content_id            String?      @db.VarChar(100)
+  related_record_id     String?      @db.VarChar(100)
+  inserted_by_id        String?      @db.VarChar(100)
+  origin_network_id     String?      @db.VarChar(100)
+  ticket_id             Int?         @default(0)
+  attachment            String?      @db.VarChar(3000)
+  sequence              Int?         @db.SmallInt
+  word_count            Int          @default(0)
+  draft_note            String?      @db.LongText
+  leads_tags            leads_tags[]
+  lock_notes            lock_notes[]
+
+  @@index([deleted_at], map: "idx_leads_notes_deleted_at")
+  @@index([is_autosaved], map: "idx_leads_notes_is_autosaved")
+  @@index([leads_transactions_id], map: "idx_leads_notes_leads_transactions_id")
+  @@index([organisation_id], map: "idx_leads_notes_organisation_id")
+  @@index([organisation_id, id], map: "idx_leads_notes_organisation_id_and_id")
+  @@index([deleted_date], map: "l_notes_deleted_date")
+  @@index([id], map: "l_notes_id")
+  @@index([leads_transactions_id], map: "l_notes_lt_id")
+}
+
+model leads_schedule {
+  id                    BigInt    @id @default(autoincrement())
+  ledger_id             BigInt
+  leads_transactions_id BigInt?
+  schedule_title        String?   @db.Text
+  schedule_description  String?   @db.Text
+  schedule_date         DateTime? @db.Timestamp(0)
+  is_confirm            Boolean   @default(false)
+  confirmed_date        DateTime? @db.Timestamp(0)
+  is_start_date         Boolean   @default(false)
+  start_date            DateTime? @db.Timestamp(0)
+  is_tagged             Boolean   @default(false)
+  is_locked             Boolean   @default(false)
+  is_knowledge          Boolean   @default(false)
+  file_attachment       String?   @db.VarChar(255)
+  is_saved              Boolean   @default(false)
+  saved_date            DateTime? @db.Timestamp(0)
+  is_sent               Boolean   @default(false)
+  sent_date             DateTime? @db.Timestamp(0)
+  created_by            BigInt?
+  updated_by            BigInt?
+  created_at            DateTime? @db.Timestamp(0)
+  updated_at            DateTime? @db.Timestamp(0)
+}
+
+model leads_screens {
+  id                    BigInt    @id @default(autoincrement())
+  ledger_id             Int
+  leads_transactions_id BigInt?
+  screen_title          String?   @db.Text
+  screen_description    String?   @db.Text
+  screen_date           DateTime? @db.Timestamp(0)
+  is_confirm            Boolean   @default(false)
+  confirmed_date        DateTime? @db.Timestamp(0)
+  is_tagged             Boolean   @default(false)
+  is_locked             Boolean   @default(false)
+  is_knowledge          Boolean   @default(false)
+  file_attachment       String?   @db.VarChar(255)
+  is_saved              Boolean   @default(false)
+  saved_date            DateTime? @db.Timestamp(0)
+  is_sent               Boolean   @default(false)
+  sent_date             DateTime? @db.Timestamp(0)
+  created_by            Int?
+  updated_by            Int?
+  created_at            DateTime? @db.Timestamp(0)
+  updated_at            DateTime? @db.Timestamp(0)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model leads_sss {
+  id                    BigInt    @id @default(autoincrement())
+  ledger_id             BigInt
+  leads_transactions_id BigInt?   @default(0)
+  type                  Int?      @db.SmallInt
+  title                 String?   @db.Text
+  description           String?   @db.Text
+  date                  DateTime? @db.Timestamp(0)
+  is_library            Boolean   @default(false)
+  autosave              Boolean   @default(false)
+  auto_save_date        DateTime? @db.Timestamp(0)
+  created_by            BigInt?
+  updated_by            BigInt?
+  created_at            DateTime? @db.Timestamp(0)
+  updated_at            DateTime? @db.Timestamp(0)
+  is_start_date         Boolean   @default(false)
+  is_template           Boolean   @default(false)
+  deleted_at            DateTime? @db.Timestamp(0)
+  description_text      String?   @db.VarChar(1000)
+  description_backup    String?   @db.Text
+  draft_description     String?   @db.Text
+  classification_id     BigInt?
+  shortfall_type        String    @default("other") @db.VarChar(255)
+
+  @@index([leads_transactions_id], map: "idx_leads_sss_leads_transactions_id")
+}
+
+model leads_status {
+  id               BigInt    @id @default(autoincrement())
+  ledger_id        Int
+  parent_status_id BigInt    @default(0)
+  status_name      String    @db.VarChar(255)
+  created_by       BigInt?
+  updated_by       BigInt?
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  sequence_no      Int?      @default(0)
+  record_type      String?   @db.VarChar(255)
+}
+
+model leads_status_temp {
+  id               BigInt    @id @default(autoincrement())
+  ledger_id        Int
+  parent_status_id BigInt    @default(0)
+  status_name      String    @db.VarChar(255)
+  sequence_no      Int?
+  created_by       BigInt?
+  updated_by       BigInt?
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+}
+
+model leads_tags {
+  id                     BigInt              @id @default(autoincrement())
+  ledger_id              Int
+  leads_transactions_id  BigInt?
+  leads_notes_id         BigInt?
+  tag_subject            String?             @db.VarChar(2000)
+  tag_content            String?             @db.LongText
+  tag_date               DateTime            @db.Timestamp(0)
+  sequence_no            BigInt
+  is_deleted             Boolean             @default(false)
+  deleted_date           DateTime?           @db.Timestamp(0)
+  deleted_at             DateTime?           @db.Timestamp(0)
+  created_by             BigInt?
+  updated_by             BigInt?
+  created_at             DateTime?           @db.Timestamp(0)
+  updated_at             DateTime?           @db.Timestamp(0)
+  parent_ticket_id       Int?
+  global_organisation_id Int?
+  deadline_date          DateTime?           @db.Timestamp(0)
+  master_tag_prefix      String              @default("TG") @db.VarChar(255)
+  tag_number             String?             @db.VarChar(255)
+  tag_holder             BigInt?             @default(0)
+  tag_status_id          Int?                @default(1)
+  group_id               BigInt?             @default(0)
+  leads_notes            leads_notes?        @relation(fields: [leads_notes_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "leads_tags_leads_notes_id_foreign")
+  leads_transactions     leads_transactions? @relation(fields: [leads_transactions_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "leads_tags_leads_transactions_id_foreign")
+
+  @@index([created_by], map: "idx_leads_tags_created_by")
+  @@index([global_organisation_id], map: "idx_leads_tags_global_organisation_id")
+  @@index([global_organisation_id, id], map: "idx_leads_tags_global_organisation_id_and_id")
+  @@index([leads_transactions_id], map: "idx_leads_tags_leads_transactions_id")
+  @@index([parent_ticket_id], map: "idx_leads_tags_parent_ticket_id")
+  @@index([leads_notes_id], map: "leads_tags_leads_notes_id_foreign")
+  @@index([leads_transactions_id], map: "leads_tags_leads_transactions_id_foreign")
+}
+
+model leads_tags_assign_to {
+  id            BigInt    @id @default(autoincrement())
+  ledger_id     BigInt
+  leads_tags_id BigInt
+  users_id      BigInt?
+  user_comments String?   @db.LongText
+  assign_date   DateTime? @db.Timestamp(0)
+  created_by    BigInt?
+  updated_by    BigInt?
+  created_at    DateTime? @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+  tag_status_id Int?
+
+  @@index([leads_tags_id, id], map: "idx_leads_tags_assign_to_leads_tags_id_id")
+}
+
+model leads_tickets {
+  id                      BigInt    @id @default(autoincrement())
+  ledger_id               Int
+  leads_transactions_id   BigInt?
+  parent_ticket_id        BigInt
+  sequence_no             BigInt
+  is_deleted              Boolean   @default(false)
+  deleted_date            DateTime? @db.Timestamp(0)
+  created_by              BigInt?
+  updated_by              BigInt?
+  created_at              DateTime? @db.Timestamp(0)
+  updated_at              DateTime? @db.Timestamp(0)
+  deleted_at              DateTime? @db.Timestamp(0)
+  is_delete               Boolean?  @default(false)
+  global_organisation_id  Int?
+  ticket_crm_id           String?   @db.VarChar(255)
+  master_ticket_crm_id    String?   @db.VarChar(255)
+  organisation_name       String?   @db.VarChar(255)
+  deadline_date           DateTime? @db.Timestamp(0)
+  ticket_description      String?   @db.Text
+  ticket_subject          String?   @db.VarChar(1000)
+  master_ticket_prefix    String    @default("TK") @db.VarChar(255)
+  ticket_number           String?   @db.VarChar(255)
+  deadline_time           DateTime? @db.Timestamp(0)
+  assigned_to             BigInt?   @default(0)
+  is_archived             Boolean   @default(false)
+  user_comments           String?   @db.Text
+  ticket_status_id        Int?
+  assign_date             DateTime? @db.Timestamp(0)
+  opened_date             DateTime? @db.Timestamp(0)
+  ticket_owner_id         String?   @db.VarChar(50)
+  import_status           String?   @db.VarChar(50)
+  category                String?   @db.VarChar(80)
+  parent_ticket_id_number String?   @db.VarChar(255)
+  reset_count             Int       @default(0)
+  priority                BigInt?
+  ticket_type             BigInt?
+  ticket_status_id_backup Int?
+  priority_backup         Int       @default(0) @db.SmallInt
+  hours_required          Int?      @default(0)
+  is_deadline_reset       Boolean   @default(false)
+  is_hours_required_reset Boolean   @default(false)
+
+  @@index([global_organisation_id], map: "idx_leads_tickets_global_organisation_id")
+  @@index([global_organisation_id, id], map: "idx_leads_tickets_global_organisation_id_and_id")
+  @@index([leads_transactions_id], map: "idx_leads_tickets_leads_transactions_id")
+  @@index([parent_ticket_id], map: "leads_tickets_parent_ticket_id_foreign")
+}
+
+model leads_tickets_assign_to {
+  id               BigInt    @id @default(autoincrement())
+  ledger_id        BigInt
+  leads_tickets_id BigInt
+  users_id         BigInt
+  user_comments    String?   @db.LongText
+  ticket_status_id Int?
+  assign_date      DateTime? @db.Timestamp(0)
+  created_by       BigInt?
+  updated_by       BigInt?
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  deleted_at       DateTime? @db.Timestamp(0)
+  import_status    String?   @db.VarChar(255)
+}
+
+model leads_tickets_status {
+  id          BigInt    @id @default(autoincrement())
+  ledger_id   Int
+  status_name String    @db.VarChar(255)
+  created_by  BigInt?
+  updated_by  BigInt?
+  created_at  DateTime? @db.Timestamp(0)
+  updated_at  DateTime? @db.Timestamp(0)
+  sequence_no Int       @default(0) @db.SmallInt
+}
+
+model leads_transactions {
+  id                      BigInt       @id @default(autoincrement())
+  ledger_id               Int?
+  product_name            String?      @db.VarChar(255)
+  lead_source_details     String?      @db.VarChar(1000)
+  lead_currency_id        Int?
+  lead_owner_id           BigInt?
+  lead_holder_id          BigInt?
+  deadline_date           DateTime?    @db.Date
+  created_by              BigInt?
+  updated_by              BigInt?
+  created_at              DateTime?    @db.Timestamp(0)
+  updated_at              DateTime?    @db.Timestamp(0)
+  lead_status_id          BigInt       @default(4)
+  last_modified_on        DateTime?    @db.Timestamp(0)
+  investment_hours        String?      @db.VarChar(255)
+  deleted_date            String?      @db.VarChar(255)
+  lead_record_type        String?      @db.VarChar(255)
+  classification_id       BigInt?
+  lead_source             String?      @db.VarChar(255)
+  full_name               Int?
+  organisation_name       Int?
+  is_delete               Boolean?     @default(false)
+  deleted_at              DateTime?    @db.Timestamp(0)
+  referral_organisation   String?      @db.Text
+  company_name            String?      @db.Text
+  finance_value           Decimal?     @db.Decimal(25, 6)
+  turn_over               Decimal?     @db.Decimal(25, 6)
+  crm_id                  String?      @db.VarChar(255)
+  import_people_email     String?      @db.VarChar(255)
+  is_ticket_n             Int          @default(0)
+  opportunity_name        String?
+  a_id                    String?      @db.VarChar(100)
+  is_ticket               Int?         @default(0) @db.SmallInt
+  people_name             String?      @db.VarChar(100)
+  unused_date             String?      @db.VarChar(255)
+  lead_status_id_backup   BigInt?
+  failed_reason           String?      @db.VarChar(500)
+  total_inbound           Int          @default(0) @db.SmallInt
+  total_outbound          Int          @default(0) @db.SmallInt
+  total_comment           Int          @default(0) @db.SmallInt
+  total_conversation      Int          @default(0) @db.SmallInt
+  last_communications     String?      @db.LongText
+  last_sold_chat_on       String?      @db.Text
+  last_conversation_on    String?      @db.Text
+  lead_record_type_backup String?      @db.VarChar(255)
+  rate                    Decimal?     @default(0.00) @db.Decimal(5, 2)
+  ptv                     Decimal?     @db.Decimal(13, 6)
+  dso                     Decimal?     @db.Decimal(13, 6)
+  pv_to                   Decimal?     @db.Decimal(13, 6)
+  summary                 String?      @db.Text
+  rejected_reason         String?      @db.VarChar(500)
+  future_reason           String?      @db.VarChar(500)
+  failed_summary          String?      @db.Text
+  holder_modified         DateTime?    @db.Timestamp(0)
+  is_downgraded           Boolean      @default(false)
+  gclid                   String?      @db.VarChar(255)
+  is_quality_lead         Boolean?
+  interesting_leads       Boolean?     @default(false)
+  leads_tags              leads_tags[]
+  lock_notes              lock_notes[]
+
+  @@index([classification_id], map: "classification_id")
+  @@index([full_name], map: "full_name")
+  @@index([full_name], map: "idx_full_name")
+  @@index([deleted_at], map: "idx_leads_transactions_deleted_at")
+  @@index([full_name, id], map: "idx_leads_transactions_full_name_and_id")
+  @@index([organisation_name], map: "idx_leads_transactions_organisation_name")
+  @@index([organisation_name, id], map: "idx_leads_transactions_organisation_name_and_id")
+  @@index([lead_holder_id], map: "lead_holder_id")
+  @@index([lead_owner_id], map: "lead_owner_id")
+  @@index([lead_status_id], map: "lead_status_id")
+  @@index([organisation_name], map: "organisation_name")
+}
+
+model leads_transactions_contacts {
+  id                    BigInt   @id @default(autoincrement())
+  leads_transactions_id Int
+  contact_type          String   @db.VarChar(255)
+  contact_for           String   @db.VarChar(10)
+  contact_value         String   @db.VarChar(255)
+  created_by            Int
+  updated_by            Int
+  created_at            DateTime @default(now()) @db.Timestamp(0)
+  updated_at            DateTime @default(now()) @db.Timestamp(0)
+
+  @@index([leads_transactions_id], map: "idx_leads_transactions_contacts_leads_transactions_id")
+}
+
+model ledger_dashboard_widgets {
+  id                   BigInt    @id @default(autoincrement())
+  ledger_id            Int
+  widget_title         String    @db.VarChar(255)
+  widget_description   String    @db.VarChar(255)
+  widget_function_name String    @db.VarChar(255)
+  extra_options        String    @db.VarChar(255)
+  allowed_user_roles   String    @db.VarChar(255)
+  created_by           BigInt
+  updated_by           BigInt
+  created_at           DateTime? @db.Timestamp(0)
+  updated_at           DateTime? @db.Timestamp(0)
+}
+
+model ledger_email_templates {
+  id                BigInt    @id @default(autoincrement())
+  ledger_id         Int
+  template_name     String    @db.VarChar(255)
+  email_subject     String    @db.VarChar(255)
+  email_body        String    @db.Text
+  used_placeholders String    @db.VarChar(255)
+  created_by        BigInt
+  updated_by        BigInt
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+}
+
+model ledger_system_audit {
+  id             BigInt    @id @default(autoincrement())
+  ledger_id      BigInt?
+  user_type      String?   @db.VarChar(255)
+  user_id        BigInt?
+  event          String    @db.VarChar(255)
+  auditable_type String    @db.VarChar(255)
+  auditable_id   BigInt
+  old_values     String?   @db.Text
+  new_values     String?   @db.Text
+  url            String?   @db.Text
+  ip_address     String?   @db.VarChar(255)
+  user_agent     String?   @db.VarChar(1023)
+  tags           String?   @db.VarChar(255)
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+  flag           String?   @db.VarChar(255)
+
+  @@index([auditable_type, auditable_id], map: "ledger_system_audit_auditable_type_auditable_id_index")
+  @@index([user_id, user_type], map: "ledger_system_audit_user_id_user_type_index")
+}
+
+model ledgers {
+  id              BigInt        @id @default(autoincrement())
+  parent_ledger   Int?
+  organisation_id Int
+  super_user_id   Int
+  name            String        @db.VarChar(255)
+  logo_url        String?       @db.VarChar(255)
+  description     String?       @db.VarChar(2000)
+  currency_id     Int?
+  timezone_id     Int?
+  status          Boolean?
+  deleted_at      DateTime?     @db.Timestamp(0)
+  created_by      Int
+  updated_by      Int
+  created_at      DateTime?     @db.Timestamp(0)
+  updated_at      DateTime?     @db.Timestamp(0)
+  hierarchy_code  String?       @db.VarChar(255)
+  api_access      Boolean       @default(false)
+  key_library     key_library[]
+  lock_notes      lock_notes[]
+  snap_note       snap_note[]
+  user_groups     user_groups[]
+
+  @@index([organisation_id], map: "idx_ledgers_organisation_id")
+  @@index([organisation_id, id], map: "idx_ledgers_organisation_id_and_id")
+  @@index([organisation_id], map: "ledgers_organisation_idx")
+}
+
+model ledgers_exchange_rate_settings {
+  id                  BigInt   @id @default(autoincrement())
+  ledger_id           Int?
+  currency_id         Int
+  current_base_value  Float    @db.Float
+  fx_rate_provider_id Int?
+  created_by          Int
+  created_at          DateTime @default(now()) @db.Timestamp(0)
+  status              Boolean  @default(true)
+}
+
+model ledgers_financial_year {
+  id          BigInt    @id @default(autoincrement())
+  ledger_id   Int
+  start_date  DateTime? @db.Date
+  end_date    DateTime? @db.Date
+  data_status Boolean?
+  created_at  DateTime? @db.DateTime(0)
+  updated_at  DateTime? @db.DateTime(0)
+}
+
+model ledgers_role_mapping {
+  id                            BigInt    @id @default(autoincrement())
+  ledger_id                     Int
+  entity_type                   Int
+  entity_id                     Int
+  role_id                       Int
+  related_entity_type           Int
+  related_entity_id             Int
+  related_role_id               Int
+  exchange_ref_id               String?   @db.VarChar(100)
+  tag_ids                       String?   @db.VarChar(255)
+  created_by                    Int
+  created_at                    DateTime  @db.Timestamp(0)
+  updated_at                    DateTime? @db.Timestamp(0)
+  crm_id                        String?   @db.VarChar(255)
+  supplier_insurance_no         String?   @db.VarChar(255)
+  currency_id                   BigInt?
+  agreed_early_payment_discount String?   @db.VarChar(255)
+  updated_by                    BigInt?
+  is_delete                     Boolean?  @default(false)
+  deleted_at                    DateTime? @db.DateTime(0)
+
+  @@index([entity_id], map: "idx_ledgers_role_mapping_entity_id")
+  @@index([entity_id, entity_type], map: "idx_ledgers_role_mapping_entity_id_type")
+  @@index([is_delete], map: "idx_ledgers_role_mapping_is_delete")
+  @@index([related_entity_id, related_entity_type], map: "idx_ledgers_role_mapping_related_entity_id_type")
+}
+
+model ledgers_tags {
+  id         BigInt    @id @default(autoincrement())
+  ledger_id  Int
+  tag_name   String    @db.VarChar(100)
+  created_by Int
+  updated_by Int
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model lock_notes {
+  id                    BigInt             @id @default(autoincrement())
+  ledger_id             BigInt
+  leads_transactions_id BigInt
+  leads_notes_id        BigInt
+  users_id              BigInt
+  created_by            BigInt?
+  updated_by            BigInt?
+  created_at            DateTime?          @db.Timestamp(0)
+  updated_at            DateTime?          @db.Timestamp(0)
+  leads_notes           leads_notes        @relation(fields: [leads_notes_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "lock_notes_leads_notes_id_foreign")
+  leads_transactions    leads_transactions @relation(fields: [leads_transactions_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "lock_notes_leads_transactions_id_foreign")
+  ledgers               ledgers            @relation(fields: [ledger_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "lock_notes_ledger_id_foreign")
+  users                 users              @relation(fields: [users_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "lock_notes_users_id_foreign")
+
+  @@index([leads_notes_id], map: "idx_lock_notes_leads_notes_id")
+  @@index([leads_transactions_id], map: "idx_lock_notes_leads_transactions_id")
+  @@index([users_id], map: "idx_lock_notes_users_id")
+  @@index([leads_notes_id], map: "lock_notes_leads_notes_id_foreign")
+  @@index([leads_transactions_id], map: "lock_notes_leads_transactions_id_foreign")
+  @@index([ledger_id], map: "lock_notes_ledger_id_foreign")
+  @@index([users_id], map: "lock_notes_users_id_foreign")
+}
+
+model migrations {
+  id        Int    @id @default(autoincrement())
+  migration String @db.VarChar(255)
+  batch     Int
+}
+
+model org_exchange_ratings {
+  id                        BigInt    @id @default(autoincrement())
+  global_org_id             BigInt
+  global_exchange_rating_id Int
+  mapping_type              Int       @default(1) @db.SmallInt
+  ratting_json              String?   @db.VarChar(1000)
+  from_date                 DateTime? @db.Date
+  to_date                   DateTime? @db.Date
+  order                     Int
+  additional_description    String    @db.VarChar(1000)
+  created_by                Int
+  updated_by                Int
+  created_at                DateTime? @db.Timestamp(0)
+  updated_at                DateTime? @db.Timestamp(0)
+  ledgers_role_mapping_id   BigInt?
+}
+
+model organisation_crm_ids {
+  id              BigInt    @id @default(autoincrement())
+  organisation_id BigInt
+  crm_id          String    @db.VarChar(100)
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+}
+
+model organisation_statuses {
+  id          BigInt   @id @default(autoincrement())
+  status_name String   @db.VarChar(255)
+  status_code String   @db.VarChar(20)
+  created_by  Int
+  updated_by  Int
+  created_at  DateTime @default(now()) @db.Timestamp(0)
+  updated_at  DateTime @default(now()) @db.Timestamp(0)
+  ledger_id   BigInt   @default(1)
+  sequence_no Int      @default(0) @db.SmallInt
+}
+
+model organisations_roles {
+  id               BigInt    @id @default(autoincrement())
+  role_name        String    @db.VarChar(255)
+  created_by       Int
+  updated_by       Int
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+  related_role_ids String?   @db.VarChar(1000)
+  ledger_id        Int       @default(1)
+
+  @@index([id], map: "idx_organisations_roles_id")
+  @@index([id], map: "organisations_roles_idx")
+  @@index([role_name], map: "organisations_roles_role_namex")
+}
+
+model people_crm_ids {
+  id         BigInt    @id @default(autoincrement())
+  people_id  BigInt    @default(0)
+  crm_id     String    @db.VarChar(100)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  is_delete  Boolean?  @default(false)
+  deleted_at DateTime? @db.DateTime(0)
+}
+
+model people_roles {
+  id               BigInt   @id @default(autoincrement())
+  role_name        String?  @db.VarChar(255)
+  created_by       BigInt
+  updated_by       BigInt
+  created_at       DateTime @default(now()) @db.Timestamp(0)
+  updated_at       DateTime @db.Timestamp(0)
+  related_role_ids String?  @db.VarChar(1000)
+  ledger_id        Int      @default(1)
+
+  @@index([id], map: "idx_people_roles_id")
+  @@index([id], map: "people_roles_idx")
+  @@index([role_name], map: "people_roles_role_namex")
+}
+
+model people_status {
+  id          BigInt    @id @default(autoincrement())
+  status_name String?   @db.VarChar(255)
+  created_at  DateTime? @db.Timestamp(0)
+  updated_at  DateTime? @db.Timestamp(0)
+  sequence_no Int       @default(0) @db.SmallInt
+}
+
+model reminders {
+  id                        BigInt    @id @default(autoincrement())
+  ledger_id                 BigInt
+  receiver_id               BigInt?
+  event_record_type         String?   @db.VarChar(255)
+  reminder_type             String?   @db.VarChar(255)
+  reminder_for              BigInt?
+  subject                   String?   @db.VarChar(255)
+  due_date_time             DateTime? @db.Timestamp(0)
+  start                     DateTime? @db.Date
+  end                       DateTime? @db.Date
+  status                    String?   @db.VarChar(255)
+  closed                    Boolean   @default(false)
+  company_organisation      String?   @db.VarChar(255)
+  organisation_id           String?   @db.VarChar(255)
+  lead                      String?   @db.VarChar(255)
+  opportunity               String?   @db.VarChar(255)
+  description               String?   @db.Text
+  full_description          String?   @db.Text
+  name                      String?   @db.VarChar(255)
+  phone                     String?   @db.VarChar(255)
+  mobile                    String?   @db.VarChar(255)
+  email                     String?   @db.VarChar(255)
+  created_by                BigInt?
+  updated_by                BigInt?
+  created_by_alias          String?   @db.VarChar(255)
+  updated_by_alias          String?   @db.VarChar(255)
+  reminder_date_time_backup DateTime? @db.Timestamp(0)
+  priority                  String?   @db.VarChar(255)
+  is_sent                   Boolean   @default(false)
+  is_read                   Boolean   @default(false)
+  read_date                 DateTime? @db.Timestamp(0)
+  created_at                DateTime? @db.Timestamp(0)
+  updated_at                DateTime? @db.Timestamp(0)
+  reset_count               Int       @default(0)
+  reminder_settings         String?   @db.Text
+  reminder_flag             Int?      @default(1)
+  deleted_at                DateTime? @db.Timestamp(0)
+  hourglass_date_time       DateTime? @db.Timestamp(0)
+
+  @@index([organisation_id], map: "idx_reminders_organisation_id")
+  @@index([organisation_id, id], map: "idx_reminders_organisation_id_and_id")
+}
+
+model report_data {
+  id                  BigInt       @id @default(autoincrement())
+  report_file_id      BigInt
+  posted              String?      @db.VarChar(255)
+  transaction_details String?      @db.Text
+  transaction_type    String?      @db.VarChar(255)
+  payment_amount      String?      @db.VarChar(255)
+  receipt_amount      String?      @db.VarChar(255)
+  ledger_balance      String?      @db.VarChar(255)
+  cleared_status      String?      @db.VarChar(255)
+  cheque_number       String?      @db.VarChar(255)
+  value_date          String?      @db.VarChar(255)
+  customer_reference  String?      @db.VarChar(255)
+  bank_reference      String?      @db.VarChar(255)
+  hash                String       @db.VarChar(255)
+  is_duplicate        Boolean      @default(false)
+  report_files        report_files @relation(fields: [report_file_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "report_data_report_file_id_foreign")
+
+  @@index([hash], map: "report_data_hash_index")
+  @@index([report_file_id], map: "report_data_report_file_id_foreign")
+}
+
+model report_files {
+  id              BigInt        @id @default(autoincrement())
+  user_id         BigInt
+  bank_account_id BigInt
+  name            String        @db.VarChar(255)
+  path            String        @db.VarChar(255)
+  hash            String        @db.VarChar(255)
+  state           Int           @db.SmallInt
+  status          Int           @db.SmallInt
+  created_at      DateTime?     @db.Timestamp(0)
+  updated_at      DateTime?     @db.Timestamp(0)
+  total_rows      Int?          @default(0)
+  report_data     report_data[]
+}
+
+model score_library {
+  id                BigInt    @id @default(autoincrement())
+  ledger_id         Int
+  product           String    @db.VarChar(100)
+  classification_id Int
+  title             String?   @db.VarChar(195)
+  description       String?   @db.Text
+  score_json        String?   @db.Text
+  score_form        String?   @db.Text
+  created_by        Int?
+  updated_by        Int?
+  created_at        DateTime? @db.Timestamp(0)
+  updated_at        DateTime? @db.Timestamp(0)
+  deleted_at        DateTime? @db.Timestamp(0)
+}
+
+model snap_note {
+  id              BigInt    @id @default(autoincrement())
+  ledger_id       BigInt
+  snap_note_texts String    @db.Text
+  created_by      BigInt?   @default(0)
+  updated_by      BigInt?   @default(0)
+  created_at      DateTime? @db.Timestamp(0)
+  updated_at      DateTime? @db.Timestamp(0)
+  deleted_at      DateTime? @db.Timestamp(0)
+  ledgers         ledgers   @relation(fields: [ledger_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "snap_note_ledger_id_foreign")
+
+  @@index([ledger_id], map: "snap_note_ledger_id_foreign")
+}
+
+model snap_note_to {
+  id             BigInt    @id @default(autoincrement())
+  ledger_id      BigInt
+  users_id       BigInt
+  snap_note_id   BigInt
+  snap_note_date DateTime  @db.Timestamp(0)
+  is_sent        Boolean   @default(false)
+  sent_date      DateTime  @db.Timestamp(0)
+  is_read        Boolean   @default(false)
+  read_date      DateTime? @db.Timestamp(0)
+  created_by     BigInt?
+  updated_by     BigInt?
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+  deleted_at     DateTime? @db.Timestamp(0)
+
+  @@index([ledger_id], map: "snap_note_to_ledger_id_foreign")
+  @@index([snap_note_id], map: "snap_note_to_snap_note_id_foreign")
+  @@index([users_id], map: "snap_note_to_users_id_foreign")
+}
+
+model sold_source {
+  id               BigInt    @id @default(autoincrement())
+  ledger_id        Int
+  sold_source_name String    @db.VarChar(255)
+  created_by       Int?
+  updated_by       Int?
+  created_at       DateTime? @db.Timestamp(0)
+  updated_at       DateTime? @db.Timestamp(0)
+}
+
+model sold_status_sequence {
+  id                  BigInt   @id @default(autoincrement())
+  lead_record_type_id BigInt?
+  lead_record_type    String?
+  lead_status_id      BigInt?
+  sequence            Int      @default(0)
+  created_at          DateTime @default(now()) @db.Timestamp(0)
+  updated_at          DateTime @default(now()) @db.Timestamp(0)
+}
+
+model system_menu_actions {
+  id             BigInt    @id @default(autoincrement())
+  action_name    String    @db.VarChar(255)
+  created_at     DateTime? @db.Timestamp(0)
+  updated_at     DateTime? @db.Timestamp(0)
+  method_name    String?   @db.VarChar(255)
+  system_menu_id BigInt?
+}
+
+model system_modules {
+  id          BigInt    @id @default(autoincrement())
+  title       String    @db.VarChar(255)
+  path        String    @db.VarChar(255)
+  parent_id   Int
+  sequence_no Int
+  created_by  Int?
+  updated_by  Int?
+  created_at  DateTime? @db.Timestamp(0)
+  updated_at  DateTime? @db.Timestamp(0)
+  menu_type   Int       @default(0) @db.SmallInt
+}
+
+model ticker_information {
+  id          BigInt   @id @default(autoincrement())
+  ledger_id   BigInt?
+  ticker_text String   @db.VarChar(255)
+  ticker_url  String?  @db.VarChar(255)
+  description String?  @db.Text
+  updated_by  BigInt?
+  updated_at  DateTime @db.Timestamp(0)
+  user_groups String?  @db.Text
+}
+
+model ticker_tape_broadcast {
+  id         BigInt    @id @default(autoincrement())
+  key        String?   @db.VarChar(255)
+  value      String?   @db.VarChar(255)
+  type       String?   @default("TICKER_TAPE_BROADCAST") @db.VarChar(255)
+  deleted_at DateTime? @db.Timestamp(0)
+  created_by Int?
+  updated_by Int?
+  deleted_by Int?
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model ticket_priority {
+  id         BigInt    @id @default(autoincrement())
+  priority   String?
+  order      Int       @default(0)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model user_crm_ids {
+  id         BigInt    @id @default(autoincrement())
+  user_id    BigInt    @default(0)
+  crm_id     String    @db.VarChar(100)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model user_dashboards {
+  id         BigInt    @id @default(autoincrement())
+  user_id    BigInt?
+  widget_id  BigInt?
+  position   Int?      @db.SmallInt
+  name       String    @db.VarChar(255)
+  settings   String    @db.VarChar(1000)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+}
+
+model user_groups {
+  id         BigInt    @id @default(autoincrement())
+  ledger_id  BigInt
+  group_name String    @db.VarChar(255)
+  created_by BigInt?
+  updated_by BigInt?
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  manager_id BigInt?   @default(0)
+  ledgers    ledgers   @relation(fields: [ledger_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_groups_ledger_id_foreign")
+
+  @@index([ledger_id], map: "user_groups_ledger_id_foreign")
+}
+
+model user_groups_permissions {
+  id                  BigInt    @id @default(autoincrement())
+  user_groups_id      BigInt
+  dma_menu_id         BigInt
+  dma_menu_actions_id BigInt
+  created_by          BigInt?
+  created_at          DateTime? @db.Timestamp(0)
+  updated_at          DateTime? @db.Timestamp(0)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model users {
+  id                     BigInt       @id @default(autoincrement())
+  first_name             String       @db.VarChar(255)
+  email                  String       @unique(map: "users_email_unique") @db.VarChar(255)
+  password               String       @db.VarChar(255)
+  remember_token         String?      @db.VarChar(100)
+  status                 Int          @db.SmallInt
+  created_at             DateTime?    @db.Timestamp(0)
+  updated_at             DateTime?    @db.Timestamp(0)
+  is_email               String?      @db.VarChar(255)
+  tempkey                String?      @db.VarChar(255)
+  last_name              String?      @db.VarChar(255)
+  default_ledger_id      Int?
+  deleted_at             DateTime?    @db.Timestamp(0)
+  last_login_at          DateTime?    @db.Timestamp(0)
+  dm_settings            String?      @db.Text
+  bonus_figures          String?      @db.Text
+  days_target            Int?
+  theme_color            String?      @db.VarChar(255)
+  font_size              String?      @db.VarChar(255)
+  sales_target_date      DateTime?    @db.Date
+  sales_target           String?      @db.Text
+  phone_number           String?      @db.VarChar(255)
+  mobile_number          String?      @db.VarChar(255)
+  sms_number             String?      @db.VarChar(255)
+  profile_img            String?      @default("placeholder.png") @db.VarChar(255)
+  quick_notes            String?      @db.Text
+  crm_id                 String?      @db.VarChar(255)
+  is_change_password     Int          @default(0)
+  auto_text_correction   String?      @db.Text
+  created_by             BigInt?
+  updated_by             BigInt?
+  global_organisation_id Int?
+  profile_url            String?      @db.VarChar(255)
+  notification_settings  String?      @db.Text
+  lock_notes             lock_notes[]
+
+  @@index([global_organisation_id], map: "idx_users_global_organisation_id")
+  @@index([global_organisation_id, id], map: "idx_users_global_organisation_id_and_id")
+  @@index([email], map: "users_emailx")
+  @@index([first_name], map: "users_first_namex")
+  @@index([id], map: "users_idx")
+  @@index([last_name], map: "users_last_namex")
+}
+
+model users_apis_access {
+  id          BigInt    @id @default(autoincrement())
+  ledger_id   Int
+  user_id     Int
+  ip_address  String    @db.Text
+  expiry_date DateTime  @db.Date
+  api_key     String    @db.Text
+  secret      String    @db.Text
+  data_limit  Int
+  status      Int
+  created_by  Int?
+  updated_by  Int?
+  created_at  DateTime? @db.Timestamp(0)
+  updated_at  DateTime? @db.Timestamp(0)
+}
+
+model users_groups_mapping {
+  id            BigInt    @id @default(autoincrement())
+  ledger_id     BigInt?
+  user_id       BigInt?
+  user_group_id BigInt?
+  created_by    BigInt?
+  updated_by    BigInt?
+  created_at    DateTime  @default(now()) @db.Timestamp(0)
+  updated_at    DateTime? @db.Timestamp(0)
+}
+
+model users_roles {
+  id         BigInt    @id @default(autoincrement())
+  role_name  String    @db.VarChar(255)
+  created_by String    @db.VarChar(255)
+  updated_by String    @db.VarChar(255)
+  created_at DateTime? @db.Timestamp(0)
+  updated_at DateTime? @db.Timestamp(0)
+  dma_access Boolean   @default(false)
+}
+
+model users_roles_mapping {
+  id           BigInt   @id @default(autoincrement())
+  ledger_id    BigInt
+  user_id      BigInt
+  user_role_id BigInt
+  is_custom    Boolean  @default(false)
+  created_by   String   @db.VarChar(255)
+  updated_by   String   @db.VarChar(255)
+  created_at   DateTime @default(now()) @db.Timestamp(0)
+  updated_at   DateTime @default(now()) @db.Timestamp(0)
+}
+
+model users_roles_permissions {
+  id                     BigInt    @id @default(autoincrement())
+  user_role_id           BigInt
+  system_menu_id         BigInt
+  system_menu_actions_id BigInt
+  user_role_mapping_id   BigInt?
+  created_by             String    @db.VarChar(255)
+  created_at             DateTime? @db.Timestamp(0)
+  updated_at             DateTime? @db.Timestamp(0)
+}
+
+enum addresses_address_type {
+  Primary
+  Home
+  Office
+  Invoice
+  Delivery
+  Other
+  Registered
+  Trading
+  Billing
+  Registered_Office @map("Registered Office")
+  Business_Location @map("Business Location")
+  Commercial_Office @map("Commercial Office")
+  Technical_Office  @map("Technical Office")
+  Operations_Office @map("Operations Office")
+  Invoice_Office    @map("Invoice Office")
+}
+
+enum global_people_proof_of_identity {
+  proof_of_identity_enum_value_1
+  proof_of_identity_enum_value_2
+}
+
+enum global_people_proof_of_address {
+  proof_of_address_enum_value_1
+  proof_of_address_enum_value_2
+}

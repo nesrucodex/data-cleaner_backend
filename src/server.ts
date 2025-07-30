@@ -2,7 +2,7 @@ import { createServer } from "http";
 import app from "./app";
 import { PORT } from "./config/env";
 import logger from "./libs/logger";
-import prisma from "./config/db";
+// import prisma from "./config/db";
 import { registerSignalHandlers } from "./utils/signalHandler";
 
 function startApp() {

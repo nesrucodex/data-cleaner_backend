@@ -1,6 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient as DMSPrismaClient } from "../../generated/client/dms_prod";
+import { PrismaClient as EntitiesPrismaClient } from "../../generated/client/entities_prod";
 
-const prisma = new PrismaClient();
+const dmsPrisma = new DMSPrismaClient();
+const entitiesPrisma = new EntitiesPrismaClient();
 
 const convertBigIntToString = (obj: any): any => {
   if (typeof obj === "bigint") {
@@ -20,11 +22,18 @@ const convertBigIntToString = (obj: any): any => {
   return obj;
 };
 
-prisma.$use(async (params, next) => {
+dmsPrisma.$use(async (params, next) => {
   const result = await next(params);
   if (result === null || result === undefined) return result;
 
   return convertBigIntToString(result);
 });
 
-export default prisma;
+entitiesPrisma.$use(async (params, next) => {
+  const result = await next(params);
+  if (result === null || result === undefined) return result;
+
+  return convertBigIntToString(result);
+});
+
+export { dmsPrisma, entitiesPrisma };

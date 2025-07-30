@@ -1,8 +1,14 @@
 import { Router } from "express";
-import { getPaginatedTableController } from "../controllers/tables.controller";
+import {
+  getAllAllowedTablesController,
+  getPaginatedDMSTableController,
+  getPaginatedEntitiesTableController,
+} from "../controllers/tables.controller";
 
 const router = Router();
 
-router.get("/:tableName", getPaginatedTableController);
+router.get("/", getAllAllowedTablesController);
+router.get("/dms/:tableName", getPaginatedDMSTableController);
+router.get("/entities/:tableName", getPaginatedEntitiesTableController);
 
 export default router;

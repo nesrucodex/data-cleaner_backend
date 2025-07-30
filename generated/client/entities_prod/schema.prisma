@@ -1,0 +1,542 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/client/entities_prod"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("ENTITIES_PROD_DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model address {
+  address_id   Int       @id @default(autoincrement())
+  entity_id    Int
+  line_one     String    @db.VarChar(255)
+  line_two     String?   @db.VarChar(255)
+  area         String?   @db.VarChar(255)
+  city         String?   @db.VarChar(255)
+  state        String?   @db.VarChar(255)
+  zipcode      String?   @db.VarChar(20)
+  country      String?   @db.VarChar(50)
+  country_code String?   @db.Char(3)
+  ref_id       Int?
+  created_by   Int?
+  updated_by   Int?
+  created_at   DateTime? @default(now()) @db.DateTime(0)
+  updated_at   DateTime? @db.DateTime(0)
+  deleted_at   DateTime? @db.DateTime(0)
+  address_type String?   @db.VarChar(50)
+  entity       entity    @relation(fields: [entity_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "address_ibfk_1")
+  bank         bank[]
+
+  @@index([city], map: "city")
+  @@index([country_code], map: "country")
+  @@index([entity_id], map: "fk_entity_id")
+  @@index([line_one], map: "line_one")
+  @@index([line_two], map: "line_two")
+  @@index([state], map: "state")
+  @@index([zipcode], map: "zipcode")
+}
+
+model agency {
+  agency_id  Int       @id @default(autoincrement())
+  name       String?   @db.VarChar(255)
+  score      String?   @db.VarChar(50)
+  limit      String?   @db.VarChar(50)
+  contract   String?   @db.VarChar(50)
+  short      String?   @db.VarChar(255)
+  long       String?   @db.VarChar(50)
+  created_by Int?
+  updated_by Int?
+  created_at DateTime? @default(now()) @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+
+  @@index([name], map: "name")
+}
+
+model asset {
+  id               Int?
+  asset_id         String    @id @db.VarChar(20)
+  entity_id        Int?
+  batch            String?   @db.VarChar(50)
+  batch_parent     String?   @db.VarChar(30)
+  name             String?   @db.VarChar(512)
+  issued           DateTime? @db.Date
+  quantity         Int?
+  ccy              String?   @db.VarChar(50)
+  unit_price       Decimal?  @db.Decimal(30, 6)
+  classification   String?   @db.VarChar(255)
+  description      String?   @db.Text
+  serial_number    String?   @db.VarChar(255)
+  repair_maint     String?   @db.VarChar(100)
+  eot              Decimal?  @db.Decimal(16, 6)
+  vat_included     String?   @db.VarChar(100)
+  vat_on_purchases Decimal?  @db.Decimal(6, 5)
+  created_by       Int?
+  updated_by       Int?
+  created_at       DateTime? @default(now()) @db.DateTime(0)
+  updated_at       DateTime? @db.DateTime(0)
+  deleted_at       DateTime? @db.DateTime(0)
+  entity           entity?   @relation(fields: [entity_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "asset_ibfk_1")
+
+  @@index([batch_parent], map: "batch_parent")
+  @@index([entity_id], map: "fk_entity_id")
+}
+
+model bank {
+  bank_id      Int            @id @default(autoincrement())
+  country_id   String?        @db.Char(3)
+  name         String?        @db.VarChar(255)
+  SWIFT_BIC    String?        @db.VarChar(50)
+  status       Int?           @db.TinyInt
+  address_id   Int?
+  created_by   Int?
+  updated_by   Int?
+  created_at   DateTime?      @default(now()) @db.DateTime(0)
+  updated_at   DateTime?      @db.DateTime(0)
+  address      address?       @relation(fields: [address_id], references: [address_id], onDelete: NoAction, onUpdate: NoAction, map: "bank_ibfk_1")
+  bank_account bank_account[]
+
+  @@index([address_id], map: "fk_address_id")
+}
+
+model bank_account {
+  bank_account_id Int       @id @default(autoincrement())
+  entity_role_id  String?   @db.VarChar(20)
+  entity_id       Int?
+  bank_id         Int?
+  name            String?   @db.VarChar(255)
+  sort_code       String?   @db.VarChar(50)
+  account         String?   @db.VarChar(50)
+  SWIFT_BIC       String?   @db.VarChar(50)
+  IBAN            String?   @db.VarChar(100)
+  is_valid_iban   Int?      @default(0)
+  ccy             String?   @db.VarChar(3)
+  account_ref     String?   @db.VarChar(100)
+  prev_id         String?   @db.VarChar(50)
+  created_by      Int?
+  updated_by      Int?
+  created_at      DateTime? @default(now()) @db.DateTime(0)
+  updated_at      DateTime? @db.DateTime(0)
+  deleted_at      DateTime? @db.Timestamp(0)
+  entity          entity?   @relation(fields: [entity_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "bank_account_ibfk_1")
+  bank            bank?     @relation(fields: [bank_id], references: [bank_id], onDelete: NoAction, onUpdate: NoAction, map: "bank_account_ibfk_2")
+
+  @@index([IBAN], map: "IBAN")
+  @@index([account], map: "account")
+  @@index([bank_id], map: "fk_bank_id")
+  @@index([entity_id], map: "fk_entity_id")
+}
+
+model buy {
+  acquisition_id          Int       @id @default(autoincrement())
+  status                  String?   @db.VarChar(20)
+  originator_id           String?   @db.VarChar(20)
+  debtor_id               String?   @db.VarChar(20)
+  creditor_id             String?   @db.VarChar(20)
+  credebtor_id            String?   @db.VarChar(20)
+  leasee_id               String?   @db.VarChar(20)
+  ledger                  String?   @db.VarChar(256)
+  type                    String?   @db.VarChar(20)
+  etr_no                  Int?
+  classification          String?   @db.VarChar(64)
+  issued                  DateTime? @db.Date
+  trade_id                String?   @db.VarChar(50)
+  PO                      String?   @db.VarChar(100)
+  ref                     String?   @db.VarChar(100)
+  posted                  DateTime? @db.Date
+  deposit                 Decimal?  @db.Decimal(30, 6)
+  traded                  DateTime? @db.Date
+  EDSO                    Int?
+  ccy                     String?   @db.VarChar(50)
+  face_value              Decimal?  @db.Decimal(30, 6)
+  expected_date           DateTime? @db.Date
+  ETR_FILE                String?   @db.Text
+  organisation_file       String?   @db.Text
+  PO_file                 String?   @db.Text
+  PoD_file                String?   @db.Text
+  signed_file             String?   @db.Text
+  fx_file_check           Boolean?
+  proof_file              String?   @db.Text
+  organisation_check      Boolean?
+  issued_check            Boolean?
+  PO_check                Boolean?
+  ref_check               Boolean?
+  face_value_check        Boolean?
+  expected_date_check     Boolean?
+  etr_check               Boolean?
+  organisation_file_check Boolean?
+  PoD_check               Boolean?
+  signed_check            Boolean?
+  proof_check             Boolean?
+  assessed_by             String?   @db.VarChar(50)
+  assessed_at             DateTime? @db.DateTime(0)
+  approved_by             String?   @db.VarChar(50)
+  approved_at             DateTime? @db.DateTime(0)
+  authorized_by           String?   @db.VarChar(50)
+  authorized_at           DateTime? @db.DateTime(0)
+  deviated_at             DateTime? @db.DateTime(0)
+  purchased               Decimal?  @db.Decimal(15, 6)
+  sell_rate               Decimal?  @db.Decimal(10, 5)
+  sell_type               String?   @db.VarChar(20)
+  disable_180_days        String?   @db.VarChar(30)
+  idc_premium             Decimal?  @db.Decimal(8, 4)
+  agent_premium           Decimal?  @db.Decimal(8, 4)
+  traded_fx               Decimal?  @db.Decimal(8, 4)
+  trade_commission        Decimal?  @db.Decimal(30, 2)
+  settled                 DateTime? @db.Date
+  settled_fx              Decimal?  @db.Decimal(15, 3)
+  closed                  DateTime? @db.Date
+  closed_fx               Decimal?  @db.Decimal(30, 2)
+  fixed_charge            Decimal?  @db.Decimal(6, 5)
+  EOT                     Decimal?  @db.Decimal(16, 6)
+  VAT_included            Decimal?  @db.Decimal(6, 5)
+  VAT_on_purchases        Decimal?  @db.Decimal(6, 5)
+  EUR_value               Decimal?  @db.Decimal(15, 3)
+  PTV                     Decimal?  @db.Decimal(6, 5)
+  idtkoi                  String?   @db.VarChar(50)
+  deviation_message       String?   @db.Text
+  rejected_message        String?   @db.Text
+  contact_first_name      String?   @db.VarChar(50)
+  contact_last_name       String?   @db.VarChar(50)
+  contact_phone           String?   @db.VarChar(50)
+  contact_country         String?   @db.VarChar(50)
+  contact_area            String?   @db.VarChar(255)
+  created_by              Int?
+  updated_by              Int?
+  created_at              DateTime? @default(now()) @db.DateTime(0)
+  updated_at              DateTime? @default(now()) @db.DateTime(0)
+  deleted_at              DateTime? @db.DateTime(0)
+  unit_price              Decimal?  @db.Decimal(30, 2)
+  months                  Int?
+  PO_file_check           Boolean?  @default(false)
+  payment_terms           Int?
+  PO_date                 DateTime? @db.Date
+  rejected_at             DateTime? @db.Date
+  invoice_no              Int?
+  fx_file                 String?   @db.Text
+  invoice_date            DateTime? @db.Date
+}
+
+model demo_users {
+  id         Int       @id @default(autoincrement())
+  name       String?   @db.VarChar(100)
+  email      String?   @unique(map: "email") @db.VarChar(100)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model entity {
+  entity_id                                         Int                        @id @default(autoincrement())
+  type                                              Int
+  name                                              String                     @db.VarChar(255)
+  trade_name                                        String?                    @db.VarChar(255)
+  creator_ledger_id                                 Int?                       @default(0)
+  computed_phones                                   String?                    @db.Text
+  computed_addresses                                String?                    @db.Text
+  computed_emails                                   String?                    @db.Text
+  prev_id                                           String?                    @db.VarChar(50)
+  created_by                                        Int?
+  updated_by                                        Int?
+  created_at                                        DateTime?                  @default(now()) @db.DateTime(0)
+  updated_at                                        DateTime?                  @db.DateTime(0)
+  deleted_at                                        DateTime?                  @db.DateTime(0)
+  is_deleted                                        Boolean                    @default(false)
+  dups_ok                                           Int?                       @default(0)
+  address                                           address[]
+  asset                                             asset[]
+  bank_account                                      bank_account[]
+  entity_contact_entity_contact_entity_idToentity   entity_contact[]           @relation("entity_contact_entity_idToentity")
+  entity_contact_entity_contact_parent_idToentity   entity_contact[]           @relation("entity_contact_parent_idToentity")
+  entity_mapping_entity_mapping_parent_idToentity   entity_mapping[]           @relation("entity_mapping_parent_idToentity")
+  entity_mapping_entity_mapping_entity_idToentity   entity_mapping[]           @relation("entity_mapping_entity_idToentity")
+  entity_property_entity_property_entity_idToentity entity_property[]          @relation("entity_property_entity_idToentity")
+  entity_property_entity_property_parent_idToentity entity_property[]          @relation("entity_property_parent_idToentity")
+  entity_required_document                          entity_required_document[] @ignore
+  entity_risk_and_rates                             entity_risk_and_rates[]
+  entity_role                                       entity_role[]
+  people                                            people[]
+
+  @@index([creator_ledger_id], map: "i_creator_ledger_id")
+  @@index([name], map: "i_name")
+  @@index([type], map: "i_type")
+  @@index([type], map: "idx_entity_dms_id_type")
+  @@index([type, entity_id], map: "idx_entity_dms_type")
+  @@index([type], map: "idx_entity_type_dms_id")
+}
+
+model entity_contact {
+  parent_id                               Int
+  entity_id                               Int
+  title                                   String?                    @db.VarChar(255)
+  is_primary                              entity_contact_is_primary?
+  entity_entity_contact_entity_idToentity entity                     @relation("entity_contact_entity_idToentity", fields: [entity_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "entity_contact_ibfk_1")
+  entity_entity_contact_parent_idToentity entity                     @relation("entity_contact_parent_idToentity", fields: [parent_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "entity_contact_ibfk_2")
+
+  @@id([entity_id, parent_id])
+  @@index([parent_id], map: "fk_parent_id")
+}
+
+model entity_mapping {
+  entity_mapping_id                       Int                        @id @default(autoincrement())
+  parent_id                               Int                        @default(0)
+  entity_id                               Int                        @default(0)
+  title                                   String?                    @db.VarChar(255)
+  is_primary                              entity_mapping_is_primary?
+  created_at                              DateTime?                  @default(now()) @db.DateTime(0)
+  updated_at                              DateTime?                  @default(now()) @db.DateTime(0)
+  created_by                              Int?
+  updated_by                              Int?
+  deleted_at                              DateTime?                  @db.DateTime(0)
+  entity_entity_mapping_parent_idToentity entity                     @relation("entity_mapping_parent_idToentity", fields: [parent_id], references: [entity_id], onDelete: Cascade, map: "entity_mapping_ibfk_1")
+  entity_entity_mapping_entity_idToentity entity                     @relation("entity_mapping_entity_idToentity", fields: [entity_id], references: [entity_id], onDelete: Cascade, map: "entity_mapping_ibfk_2")
+
+  @@index([entity_id], map: "entity_id")
+  @@index([parent_id], map: "entity_mapping_ibfk_1")
+  @@index([parent_id, entity_id, created_at, created_by, updated_at, updated_by], map: "idx_entity_mapping_composite")
+}
+
+model entity_property {
+  entity_property_id                       Int                         @id @default(autoincrement())
+  entity_id                                Int
+  parent_id                                Int?
+  property_id                              String                      @db.VarChar(100)
+  property_refid                           Int?
+  property_title                           String?                     @db.VarChar(255)
+  property_value                           String?                     @db.Text
+  is_primary                               entity_property_is_primary? @default(No)
+  position                                 Int?                        @default(1)
+  created_by                               Int?
+  updated_by                               Int?
+  created_at                               DateTime?                   @default(now()) @db.DateTime(0)
+  updated_at                               DateTime?                   @db.DateTime(0)
+  property                                 property                    @relation(fields: [property_id], references: [property_id], map: "entity_property_ibfk_1")
+  entity_entity_property_entity_idToentity entity                      @relation("entity_property_entity_idToentity", fields: [entity_id], references: [entity_id], onDelete: Cascade, map: "entity_property_ibfk_2")
+  entity_entity_property_parent_idToentity entity?                     @relation("entity_property_parent_idToentity", fields: [parent_id], references: [entity_id], onDelete: Cascade, map: "entity_property_ibfk_3")
+
+  @@index([entity_id], map: "fk_contact_id")
+  @@index([parent_id], map: "fk_organisation_id")
+  @@index([property_id], map: "fk_property_id")
+  @@index([is_primary], map: "i_is_primary")
+  @@index([property_refid], map: "i_property_refid")
+  @@index([property_value(length: 255)], map: "i_property_value")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model entity_required_document {
+  entity_id         Int
+  ETR_file          Boolean?
+  organisation_file Boolean?
+  PO_file           Boolean?
+  PoD_file          Boolean?
+  signed_file       Boolean?
+  fx_file           Boolean?
+  proof_file        Boolean?
+  created_at        DateTime? @default(now()) @db.DateTime(0)
+  updated_at        DateTime? @default(now()) @db.DateTime(0)
+  deleted_at        DateTime? @db.DateTime(0)
+  entity            entity    @relation(fields: [entity_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "entity_required_document_ibfk_1")
+
+  @@index([entity_id], map: "entity_id")
+  @@ignore
+}
+
+model entity_risk_and_rates {
+  id                         Int       @id @default(autoincrement())
+  entity_id                  Int?
+  c_max                      String?   @db.VarChar(255)
+  c_daily                    String?   @db.VarChar(255)
+  c_grade                    String?   @db.VarChar(255)
+  c_asset                    String?   @db.VarChar(255)
+  c_debtor                   String?   @db.VarChar(255)
+  c_creditor                 String?   @db.VarChar(255)
+  c_ppp                      String?   @db.VarChar(255)
+  ex_limit                   String?   @db.VarChar(255)
+  ex_contract                String?   @db.VarChar(255)
+  c_st                       String?   @db.VarChar(255)
+  c_lt                       String?   @db.VarChar(255)
+  s_p_st                     String?   @db.VarChar(255)
+  s_p_lt                     String?   @db.VarChar(255)
+  limit                      String?   @db.VarChar(255)
+  contract                   String?   @db.VarChar(255)
+  rating                     String?   @db.VarChar(255)
+  performance                String?   @db.VarChar(255)
+  other_information          String?   @db.VarChar(255)
+  act_management_document    Int?
+  statutory_filings_document Int?
+  tax_VAT_returns_document   Int?
+  licence_document           Int?
+  created_at                 DateTime? @default(now()) @db.DateTime(0)
+  updated_at                 DateTime? @default(now()) @db.DateTime(0)
+  deleted_at                 DateTime? @db.DateTime(0)
+  entity                     entity?   @relation(fields: [entity_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "entity_risk_and_rates_ibfk_1")
+
+  @@index([entity_id], map: "entity_id")
+}
+
+model entity_role {
+  entity_role_id    String        @id @db.VarChar(20)
+  entity_id         Int?
+  role_id           Int
+  parent_role_id    String?       @db.VarChar(20)
+  related_role_id   String?       @db.VarChar(20)
+  created_by        Int?
+  updated_by        Int?
+  created_at        DateTime?     @default(now()) @db.DateTime(0)
+  updated_at        DateTime?     @db.DateTime(0)
+  extra_data        Json?
+  entity            entity?       @relation(fields: [entity_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "entity_role_ibfk_1")
+  role              role          @relation(fields: [role_id], references: [role_id], onDelete: NoAction, onUpdate: NoAction, map: "entity_role_ibfk_2")
+  entity_role       entity_role?  @relation("entity_roleToentity_role", fields: [related_role_id], references: [entity_role_id], onDelete: NoAction, onUpdate: NoAction, map: "entity_role_ibfk_4")
+  other_entity_role entity_role[] @relation("entity_roleToentity_role")
+
+  @@index([entity_id], map: "entity_id")
+  @@index([parent_role_id], map: "fk_related_id")
+  @@index([related_role_id], map: "fk_related_id2")
+  @@index([role_id], map: "fk_role_id")
+  @@index([entity_id], map: "idx_entity_role_entity_id")
+  @@index([entity_role_id], map: "idx_entity_role_id")
+}
+
+model param {
+  param_id   Int       @id @default(autoincrement())
+  table      String?   @db.VarChar(50)
+  id         String?   @db.VarChar(20)
+  value      String?   @db.Text
+  created_by Int?
+  updated_by Int?
+  created_at DateTime? @default(now()) @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+
+  @@unique([table, id], map: "table_2")
+  @@index([table], map: "table")
+}
+
+model param_country {
+  country_id    String    @id @db.Char(3)
+  name          String    @db.VarChar(100)
+  dial_code     String?   @db.VarChar(10)
+  timezone      String?   @db.VarChar(10)
+  iso2          String?   @db.Char(2)
+  accountLength Int?
+  created_by    Int?
+  updated_by    Int?
+  created_at    DateTime? @default(now()) @db.DateTime(0)
+  updated_at    DateTime? @db.DateTime(0)
+
+  @@index([country_id], map: "idx_param_country_country_id")
+}
+
+model param_sequence {
+  table String @id @db.VarChar(50)
+  id    Int    @db.UnsignedInt
+}
+
+model param_table {
+  table       String  @id @db.VarChar(50)
+  last_id     Int     @db.UnsignedInt
+  description String? @db.VarChar(255)
+}
+
+model people {
+  people_id     Int       @id @default(autoincrement())
+  entity_id     Int
+  type          Int?
+  salutation    String?   @db.VarChar(20)
+  first_name    String?   @db.VarChar(100)
+  last_name     String?   @db.VarChar(100)
+  title         String?   @db.VarChar(255)
+  date_of_birth DateTime? @db.DateTime(0)
+  created_by    Int?
+  updated_by    Int?
+  created_at    DateTime? @default(now()) @db.DateTime(0)
+  updated_at    DateTime? @db.DateTime(0)
+  deleted_at    DateTime? @db.DateTime(0)
+  entity        entity    @relation(fields: [entity_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "people_ibfk_1")
+
+  @@index([entity_id], map: "fk_entity_id")
+}
+
+model phone {
+  phone_id    Int       @id @default(autoincrement())
+  device_type Int?
+  phone_type  Int?
+  label       String?   @db.VarChar(50)
+  country     String?   @db.Char(3)
+  prefix      String    @db.VarChar(10)
+  number      String    @db.VarChar(50)
+  created_by  Int?
+  updated_by  Int?
+  created_at  DateTime? @default(now()) @db.DateTime(0)
+  updated_at  DateTime? @db.DateTime(0)
+
+  @@index([country], map: "country")
+  @@index([number], map: "number")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model property {
+  property_id     String                   @id @db.VarChar(100)
+  type            String?                  @db.VarChar(50)
+  description     String?                  @db.VarChar(255)
+  label           String?                  @db.VarChar(255)
+  table           String?                  @db.VarChar(255)
+  param_table     String?                  @db.VarChar(255)
+  param_type      String?                  @db.VarChar(255)
+  allow_multiple  property_allow_multiple?
+  created_by      Int?
+  updated_by      Int?
+  created_at      DateTime?                @default(now()) @db.DateTime(0)
+  updated_at      DateTime?                @db.DateTime(0)
+  entity_property entity_property[]
+
+  @@index([type], map: "i_type")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model rating {
+  rating_id  Int       @id @default(autoincrement())
+  name       String?   @db.VarChar(255)
+  type       String?   @db.VarChar(50)
+  score      String?   @db.VarChar(50)
+  short      String?   @db.VarChar(255)
+  limit      String?   @db.VarChar(50)
+  contract   String?   @db.VarChar(50)
+  created_by Int?
+  updated_by Int?
+  created_at DateTime? @default(now()) @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+
+  @@index([name], map: "name")
+}
+
+model role {
+  role_id              Int           @id @default(autoincrement())
+  name                 String?       @db.VarChar(50)
+  recognition_priority Int?          @default(0)
+  type                 Int?
+  entity_role          entity_role[]
+
+  @@index([name], map: "idx_role_name")
+}
+
+enum entity_contact_is_primary {
+  Yes
+  No
+}
+
+enum entity_mapping_is_primary {
+  Yes
+  No
+}
+
+enum entity_property_is_primary {
+  Yes
+  No
+}
+
+enum property_allow_multiple {
+  Yes
+  No
+}

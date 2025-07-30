@@ -1,4 +1,4 @@
-export const TABLES = [
+export const DMS_TABLES = [
   "addresses",
   "deal_fields",
   "deal_fields_values",
@@ -84,4 +84,29 @@ export const TABLES = [
   "users_roles",
   "users_roles_mapping",
   "users_roles_permissions",
+];
+
+export const ENTITIES_TABLES = [
+  "address",
+  "agency",
+  "asset",
+  "bank",
+  "bank_account",
+  "buy",
+  "demo_users",
+  "entity",
+  "entity_contact",
+  "entity_mapping",
+  "entity_property",
+  "entity_risk_and_rates",
+  "entity_role",
+  "param",
+  "param_country",
+  "param_sequence",
+  "param_table",
+  "people",
+  "phone",
+  "property",
+  "rating",
+  "role",
 ];
