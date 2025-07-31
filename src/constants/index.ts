@@ -98,6 +98,7 @@ export const ENTITIES_TABLES = [
   "entity_contact",
   "entity_mapping",
   "entity_property",
+  "entity_required_document",
   "entity_risk_and_rates",
   "entity_role",
   "param",

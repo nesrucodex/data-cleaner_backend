@@ -8,8 +8,6 @@ import { swaggerRoute, healthRoute, tablesRoute } from "./routes";
 import path from "path";
 import { HEALTH_CHECK_URL, NODE_ENV } from "./config/env";
 import { startHealthCheckCron } from "./crons";
-import { entitiesPrisma } from "./config/db";
-import { getEntitiesPrismaTableNames } from "./libs/prisma-tables";
 
 const app = express();
 

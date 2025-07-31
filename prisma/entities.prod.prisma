@@ -253,7 +253,7 @@ model entity {
   entity_mapping_entity_mapping_entity_idToentity   entity_mapping[]           @relation("entity_mapping_entity_idToentity")
   entity_property_entity_property_entity_idToentity entity_property[]          @relation("entity_property_entity_idToentity")
   entity_property_entity_property_parent_idToentity entity_property[]          @relation("entity_property_parent_idToentity")
-  entity_required_document                          entity_required_document[] @ignore
+  entity_required_document                          entity_required_document[]
   entity_risk_and_rates                             entity_risk_and_rates[]
   entity_role                                       entity_role[]
   people                                            people[]
@@ -338,8 +338,8 @@ model entity_required_document {
   deleted_at        DateTime? @db.DateTime(0)
   entity            entity    @relation(fields: [entity_id], references: [entity_id], onDelete: NoAction, onUpdate: NoAction, map: "entity_required_document_ibfk_1")
 
+  @@id([entity_id])
   @@index([entity_id], map: "entity_id")
-  @@ignore
 }
 
 model entity_risk_and_rates {
