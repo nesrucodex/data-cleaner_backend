@@ -1,0 +1,5 @@
+$ npx prisma db execute --schema=prisma/entities.prod.prisma --stdin <<< "SELECT table_name, table_type FROM information_schema.tables WHERE table_schema = DATABASE() AND table_name LIKE 'qry_%';"
+Script executed successfully.
+
+$ npx prisma db pull --schema=prisma/entities.prod.prisma --force
+

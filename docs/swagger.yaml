@@ -2,8 +2,15 @@ openapi: 3.0.0
 info:
   title: Azure Data Cleaner API
   version: 1.0.0
-  description: |
-    Documentation for public endpoints.
+  description: AI-powered database cleanup and inspection API.
+
+tags:
+  - name: System
+    description: Health checks
+  - name: Tables
+    description: Read database tables
+  - name: Cleanup
+    description: Clean and fix data
 
 servers:
   - url: /api/v1
@@ -15,7 +22,7 @@ paths:
       summary: Health check
       responses:
         200:
-          description: Server is alive
+          description: Service is up
           content:
             application/json:
               example: { status: "healthy" }
@@ -23,131 +30,233 @@ paths:
   /tables:
     get:
       tags: [Tables]
-      summary: Get all allowed tables
-      description: Retrieve list of all available tables in both DMS and Entities databases
+      summary: List all allowed tables
       responses:
         200:
-          description: Successfully retrieved table list
+          description: Tables retrieved
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  message:
-                    type: string
-                  data:
-                    type: object
-                    properties:
-                      dmsTables:
-                        type: array
-                        items:
-                          type: string
-                      entitiesTables:
-                        type: array
-                        items:
-                          type: string
               example:
                 success: true
                 message: "Tables retrieved successfully"
                 data:
-                  dmsTables: ["addresses", "users", "leads_notes"]
-                  entitiesTables: ["address", "entity", "people"]
+                  dmsTables:
+                    [
+                      "addresses",
+                      "deal_fields",
+                      "deal_fields_values",
+                      "deal_sum",
+                      "dm_browser_token",
+                      "dm_filters",
+                      "dm_push_notification",
+                      "dm_tte_algorithms",
+                      "dm_tte_fields",
+                      "dma_menu",
+                      "dma_menu_actions",
+                      "dma_reports",
+                      "email_history",
+                      "failed_jobs",
+                      "favourite_report",
+                      "global_countries",
+                      "global_currencies",
+                      "global_entity_contacts",
+                      "global_industries",
+                      "global_nace_sections",
+                      "global_nace_sections_category",
+                      "global_organisations",
+                      "global_people",
+                      "global_timezones",
+                      "investment_hours",
+                      "key_library",
+                      "knowledge_library",
+                      "lead_record_type",
+                      "leads_connections",
+                      "leads_entity_attributes",
+                      "leads_entity_attributes_value",
+                      "leads_folders_files",
+                      "leads_notes",
+                      "leads_schedule",
+                      "leads_screens",
+                      "leads_sss",
+                      "leads_status",
+                      "leads_status_temp",
+                      "leads_tags",
+                      "leads_tags_assign_to",
+                      "leads_tickets",
+                      "leads_tickets_assign_to",
+                      "leads_tickets_status",
+                      "leads_transactions",
+                      "leads_transactions_contacts",
+                      "ledger_dashboard_widgets",
+                      "ledger_email_templates",
+                      "ledger_system_audit",
+                      "ledgers",
+                      "ledgers_exchange_rate_settings",
+                      "ledgers_financial_year",
+                      "ledgers_role_mapping",
+                      "ledgers_tags",
+                      "lock_notes",
+                      "migrations",
+                      "org_exchange_ratings",
+                      "organisation_crm_ids",
+                      "organisation_statuses",
+                      "organisations_roles",
+                      "people_crm_ids",
+                      "people_roles",
+                      "people_status",
+                      "reminders",
+                      "report_data",
+                      "report_files",
+                      "score_library",
+                      "snap_note",
+                      "snap_note_to",
+                      "sold_source",
+                      "sold_status_sequence",
+                      "system_menu_actions",
+                      "system_modules",
+                      "ticker_information",
+                      "ticker_tape_broadcast",
+                      "ticket_priority",
+                      "user_crm_ids",
+                      "user_dashboards",
+                      "user_groups",
+                      "user_groups_permissions",
+                      "users",
+                      "users_apis_access",
+                      "users_groups_mapping",
+                      "users_roles",
+                      "users_roles_mapping",
+                      "users_roles_permissions",
+                    ]
+                  entitiesTables:
+                    [
+                      "address",
+                      "agency",
+                      "asset",
+                      "bank",
+                      "bank_account",
+                      "buy",
+                      "demo_users",
+                      "entity",
+                      "entity_contact",
+                      "entity_mapping",
+                      "entity_property",
+                      "entity_risk_and_rates",
+                      "entity_role",
+                      "param",
+                      "param_country",
+                      "param_sequence",
+                      "param_table",
+                      "people",
+                      "phone",
+                      "property",
+                      "rating",
+                      "role",
+                    ]
 
   /tables/dms/{tableName}:
     get:
       tags: [Tables]
-      summary: Get paginated data from DMS table
-      description: |
-        Retrieve data from any available DMS table with pagination.
-        Available tables include addresses, users, leads_notes, etc.
+      summary: Get DMS table data (paginated)
       parameters:
         - $ref: "#/components/parameters/tableName"
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/limit"
       responses:
         200:
-          description: Successfully retrieved table data
+          description: Data retrieved
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  message:
-                    type: string
-                  data:
-                    type: object
-                    additionalProperties: true
-
               example:
                 success: true
-                message: "addresses retrieved successfully"
+                message: "users retrieved successfully"
                 data:
-                  addresses: [{ id: 1, address_1: "123 Main St" }]
-
-        400:
-          $ref: "#/components/responses/BadRequest"
-        404:
-          $ref: "#/components/responses/NotFound"
-        500:
-          $ref: "#/components/responses/ServerError"
+                  users:
+                    [{ id: 1, name: "John Doe", email: "john@example.com" }]
 
   /tables/entities/{tableName}:
     get:
       tags: [Tables]
-      summary: Get paginated data from Entities table
-      description: |
-        Retrieve data from any available Entities table with pagination.
-        Available tables include address, entity, people, etc.
+      summary: Get Entities table data (paginated)
       parameters:
         - $ref: "#/components/parameters/tableNameEntities"
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/limit"
       responses:
         200:
-          description: Successfully retrieved table data
+          description: Data retrieved
+          content:
+            application/json:
+              example:
+                success: true
+                message: "entity retrieved successfully"
+                data:
+                  entity: [{ id: 1, name: "Acme Inc" }]
+
+  /cleanup:
+    post:
+      tags: [Cleanup]
+      summary: Clean table data using AI
+      description: Preview or apply data fixes via AI. Only whitelisted tables.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CleanupRequest"
+            example:
+              db: "dms"
+              table: "addresses"
+              page: 1
+              limit: 5
+              dryRun: true
+      responses:
+        200:
+          description: Cleanup results
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  message:
-                    type: string
-                  data:
-                    type: object
-                    additionalProperties: true
-                  pagination:
-                    type: object
-                    properties:
-                      total:
-                        type: integer
-                      page:
-                        type: integer
-                      limit:
-                        type: integer
-                      totalPages:
-                        type: integer
-              example:
-                success: true
-                message: "address retrieved successfully"
-                data:
-                  address: [{ id: 1, address_line1: "123 Main St" }]
-                pagination:
-                  total: 50
-                  page: 1
-                  limit: 10
-                  totalPages: 5
-        400:
-          $ref: "#/components/responses/BadRequest"
-        404:
-          $ref: "#/components/responses/NotFound"
-        500:
-          $ref: "#/components/responses/ServerError"
+                $ref: "#/components/schemas/CleanupResponse"
+              examples:
+                dryRun:
+                  value:
+                    success: true
+                    message: "Cleanup preview generated"
+                    data:
+                      count: 5
+                      needsReview: 1
+                      suggestedUpdates: 3
+                      sql: "-- UPDATE `users` SET `name` = 'John Doe' WHERE `id` = 1;"
+                apply:
+                  value:
+                    success: true
+                    message: "Cleanup completed"
+                    data:
+                      updatedCount: 3
+                      totalProcessed: 5
+                      errors: []
+  /cleanup/test:
+    post:
+      tags: [Cleanup]
+      summary: Clean table data using AI
+      description: Preview data fixes via AI.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              data:
+                [
+                  { "id": 1, name: "nesru codex", email: "nesrcodex01@gm.m" },
+                  { "id": 1, name: "hassen codex", email: "hassencodex01" },
+                ]
+      responses:
+        200:
+          description: Cleanup results
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CleanupResponse"
 
 components:
   parameters:
@@ -155,179 +264,149 @@ components:
       name: tableName
       in: path
       required: true
-      description: Name of the DMS table to query
       schema:
         type: string
         enum:
-          - addresses
-          - deal_fields
-          - deal_fields_values
-          - deal_sum
-          - dm_browser_token
-          - dm_filters
-          - dm_push_notification
-          - dm_tte_algorithms
-          - dm_tte_fields
-          - dma_menu
-          - dma_menu_actions
-          - dma_reports
-          - email_history
-          - failed_jobs
-          - favourite_report
-          - global_countries
-          - global_currencies
-          - global_entity_contacts
-          - global_industries
-          - global_nace_sections
-          - global_nace_sections_category
-          - global_organisations
-          - global_people
-          - global_timezones
-          - investment_hours
-          - key_library
-          - knowledge_library
-          - lead_record_type
-          - leads_connections
-          - leads_entity_attributes
-          - leads_entity_attributes_value
-          - leads_folders_files
-          - leads_notes
-          - leads_schedule
-          - leads_screens
-          - leads_sss
-          - leads_status
-          - leads_status_temp
-          - leads_tags
-          - leads_tags_assign_to
-          - leads_tickets
-          - leads_tickets_assign_to
-          - leads_tickets_status
-          - leads_transactions
-          - leads_transactions_contacts
-          - ledger_dashboard_widgets
-          - ledger_email_templates
-          - ledger_system_audit
-          - ledgers
-          - ledgers_exchange_rate_settings
-          - ledgers_financial_year
-          - ledgers_role_mapping
-          - ledgers_tags
-          - lock_notes
-          - migrations
-          - org_exchange_ratings
-          - organisation_crm_ids
-          - organisation_statuses
-          - organisations_roles
-          - people_crm_ids
-          - people_roles
-          - people_status
-          - reminders
-          - report_data
-          - report_files
-          - score_library
-          - snap_note
-          - snap_note_to
-          - sold_source
-          - sold_status_sequence
-          - system_menu_actions
-          - system_modules
-          - ticker_information
-          - ticker_tape_broadcast
-          - ticket_priority
-          - user_crm_ids
-          - user_dashboards
-          - user_groups
-          - user_groups_permissions
-          - users
-          - users_apis_access
-          - users_groups_mapping
-          - users_roles
-          - users_roles_mapping
-          - users_roles_permissions
+          [
+            "addresses",
+            "deal_fields",
+            "deal_fields_values",
+            "deal_sum",
+            "dm_browser_token",
+            "dm_filters",
+            "dm_push_notification",
+            "dm_tte_algorithms",
+            "dm_tte_fields",
+            "dma_menu",
+            "dma_menu_actions",
+            "dma_reports",
+            "email_history",
+            "failed_jobs",
+            "favourite_report",
+            "global_countries",
+            "global_currencies",
+            "global_entity_contacts",
+            "global_industries",
+            "global_nace_sections",
+            "global_nace_sections_category",
+            "global_organisations",
+            "global_people",
+            "global_timezones",
+            "investment_hours",
+            "key_library",
+            "knowledge_library",
+            "lead_record_type",
+            "leads_connections",
+            "leads_entity_attributes",
+            "leads_entity_attributes_value",
+            "leads_folders_files",
+            "leads_notes",
+            "leads_schedule",
+            "leads_screens",
+            "leads_sss",
+            "leads_status",
+            "leads_status_temp",
+            "leads_tags",
+            "leads_tags_assign_to",
+            "leads_tickets",
+            "leads_tickets_assign_to",
+            "leads_tickets_status",
+            "leads_transactions",
+            "leads_transactions_contacts",
+            "ledger_dashboard_widgets",
+            "ledger_email_templates",
+            "ledger_system_audit",
+            "ledgers",
+            "ledgers_exchange_rate_settings",
+            "ledgers_financial_year",
+            "ledgers_role_mapping",
+            "ledgers_tags",
+            "lock_notes",
+            "migrations",
+            "org_exchange_ratings",
+            "organisation_crm_ids",
+            "organisation_statuses",
+            "organisations_roles",
+            "people_crm_ids",
+            "people_roles",
+            "people_status",
+            "reminders",
+            "report_data",
+            "report_files",
+            "score_library",
+            "snap_note",
+            "snap_note_to",
+            "sold_source",
+            "sold_status_sequence",
+            "system_menu_actions",
+            "system_modules",
+            "ticker_information",
+            "ticker_tape_broadcast",
+            "ticket_priority",
+            "user_crm_ids",
+            "user_dashboards",
+            "user_groups",
+            "user_groups_permissions",
+            "users",
+            "users_apis_access",
+            "users_groups_mapping",
+            "users_roles",
+            "users_roles_mapping",
+            "users_roles_permissions",
+          ]
+      description: DMS table name
 
     tableNameEntities:
       name: tableName
       in: path
       required: true
-      description: Name of the Entities table to query
       schema:
         type: string
         enum:
-          - address
-          - agency
-          - asset
-          - bank
-          - bank_account
-          - buy
-          - demo_users
-          - entity
-          - entity_contact
-          - entity_mapping
-          - entity_property
-          - entity_risk_and_rates
-          - entity_role
-          - param
-          - param_country
-          - param_sequence
-          - param_table
-          - people
-          - phone
-          - property
-          - rating
-          - role
+          [
+            "address",
+            "agency",
+            "asset",
+            "bank",
+            "bank_account",
+            "buy",
+            "demo_users",
+            "entity",
+            "entity_contact",
+            "entity_mapping",
+            "entity_property",
+            "entity_risk_and_rates",
+            "entity_role",
+            "param",
+            "param_country",
+            "param_sequence",
+            "param_table",
+            "people",
+            "phone",
+            "property",
+            "rating",
+            "role",
+          ]
+      description: Entities table name
 
     page:
-      name: page
       in: query
-      description: Page number
+      name: page
       schema:
         type: integer
-        default: 1
         minimum: 1
+        default: 1
+      description: Page number (1-based)
 
     limit:
-      name: limit
       in: query
-      description: Items per page
+      name: limit
       schema:
         type: integer
-        default: 10
         minimum: 1
         maximum: 100
-
-  responses:
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-          example:
-            success: false
-            message: "Invalid table name or query parameters"
-            error: { details: "Table 'invalid_table' does not exist" }
-
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-          example:
-            success: false
-            message: "Table not found"
-            error: { details: "Table 'nonexistent_table' was not found" }
-
-    ServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: "#/components/schemas/ErrorResponse"
-          example:
-            success: false
-            message: "Internal server error"
-            error: { details: "Database connection failed" }
+        default: 10
+      description: Items per page
 
   schemas:
     ErrorResponse:
@@ -335,10 +414,63 @@ components:
       properties:
         success:
           type: boolean
-          example: false
         message:
           type: string
-          example: "Invalid table name"
         error:
           type: object
           additionalProperties: true
+
+    CleanupRequest:
+      type: object
+      required: [db, table]
+      properties:
+        db:
+          type: string
+          enum: [dms, entities]
+        table:
+          type: string
+        keyField:
+          type: string
+          default: id
+        page:
+          type: integer
+          minimum: 1
+          default: 1
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          default: 10
+        dryRun:
+          type: boolean
+          default: true
+
+    CleanupResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        data:
+          oneOf:
+            - type: object
+              properties:
+                count:
+                  type: integer
+                needsReview:
+                  type: integer
+                suggestedUpdates:
+                  type: integer
+                sql:
+                  type: string
+            - type: object
+              properties:
+                updatedCount:
+                  type: integer
+                totalProcessed:
+                  type: integer
+                errors:
+                  type: array
+                  items:
+                    type: string
