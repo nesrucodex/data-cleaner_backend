@@ -1,1 +1,623 @@
-2025-08-01 22:52:51 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:23:39 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:28:49 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:34:44 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:35:02 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:35:06 [error]: Error [ERR_REQUIRE_ESM]: require() of ES Module /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/p-limit/index.js from /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts not supported.
+Instead change the require of index.js in /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts to a dynamic import() which is available in all CommonJS modules.
+    at require.extensions.<computed> [as .js] (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/ts-node/dist/index.js:851:20)
+    at TracingChannel.traceSync (node:diagnostics_channel:315:14)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts:72:77
+2025-08-05 15:36:50 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:37:05 [error]: Error [ERR_REQUIRE_ESM]: require() of ES Module /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/p-limit/index.js from /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts not supported.
+Instead change the require of index.js in /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts to a dynamic import() which is available in all CommonJS modules.
+    at require.extensions.<computed> [as .js] (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/ts-node/dist/index.js:851:20)
+    at TracingChannel.traceSync (node:diagnostics_channel:315:14)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts:74:89
+2025-08-05 15:37:05 [error]: Error: Critical: Could not load p-limit. Run 'npm install p-limit'
+    at DataCleanupService.initialize (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts:65:13)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async DataCleanupService.ensureReady (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts:77:9)
+    at async DataCleanupService.cleanDataBatch (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts:115:5)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/dataCleanUp.controller.ts:208:17
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 15:40:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 15:40:14 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:40:32 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:40:38 [info]: Split 100 rows into 20 batches
+2025-08-05 15:41:32 [warn]: Attempt 1 failed for batch 7: Request was aborted.. Retrying in 1000ms...
+2025-08-05 15:42:15 [info]: Completed cleaning 100 rows
+2025-08-05 15:47:17 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:50:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 15:52:27 [warn]: Attempt 1 failed for batch 1: Request was aborted.. Retrying in 1000ms...
+2025-08-05 15:52:58 [warn]: Attempt 2 failed for batch 1: Request was aborted.. Retrying in 2000ms...
+2025-08-05 15:53:30 [error]: Batch 1 failed after 3 attempts
+2025-08-05 15:55:09 [warn]: Attempt 1 failed for batch 1: Request was aborted.. Retrying in 1000ms...
+2025-08-05 15:55:40 [warn]: Attempt 2 failed for batch 1: Request was aborted.. Retrying in 2000ms...
+2025-08-05 15:58:06 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 15:59:14 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:03:57 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:06:13 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:08:59 [warn]: Attempt 1 failed for batch 2: Expected double-quoted property name in JSON at position 8537 (line 174 column 39). Retrying in 1000ms...
+2025-08-05 16:08:59 [warn]: Attempt 1 failed for batch 1: Unterminated string in JSON at position 8435 (line 170 column 66). Retrying in 1000ms...
+2025-08-05 16:08:59 [warn]: Attempt 1 failed for batch 3: Expected double-quoted property name in JSON at position 8401 (line 164 column 34). Retrying in 1000ms...
+2025-08-05 16:09:16 [warn]: Attempt 2 failed for batch 3: Expected ',' or '}' after property value in JSON at position 8407 (line 164 column 39). Retrying in 2000ms...
+2025-08-05 16:09:19 [warn]: Attempt 2 failed for batch 2: Expected property name or '}' in JSON at position 8376 (line 162 column 26). Retrying in 2000ms...
+2025-08-05 16:09:19 [warn]: Attempt 2 failed for batch 1: Unterminated string in JSON at position 8440 (line 170 column 64). Retrying in 2000ms...
+2025-08-05 16:09:37 [error]: Batch 3 failed after 3 attempts
+2025-08-05 16:09:41 [error]: Batch 2 failed after 3 attempts
+2025-08-05 16:09:41 [error]: Batch 1 failed after 3 attempts
+2025-08-05 16:09:56 [warn]: Attempt 1 failed for batch 6: Unterminated string in JSON at position 8522 (line 174 column 28). Retrying in 1000ms...
+2025-08-05 16:09:58 [warn]: Attempt 1 failed for batch 4: Unexpected end of JSON input. Retrying in 1000ms...
+2025-08-05 16:10:02 [warn]: Attempt 1 failed for batch 5: Unterminated string in JSON at position 8299 (line 132 column 18). Retrying in 1000ms...
+2025-08-05 16:10:15 [warn]: Attempt 2 failed for batch 4: Expected double-quoted property name in JSON at position 8415 (line 170 column 92). Retrying in 2000ms...
+2025-08-05 16:10:18 [warn]: Attempt 2 failed for batch 6: Unterminated string in JSON at position 8522 (line 174 column 28). Retrying in 2000ms...
+2025-08-05 16:10:25 [warn]: Attempt 2 failed for batch 5: Unterminated string in JSON at position 8228 (line 144 column 650). Retrying in 2000ms...
+2025-08-05 16:10:35 [error]: Batch 6 failed after 3 attempts
+2025-08-05 16:10:37 [error]: Batch 4 failed after 3 attempts
+2025-08-05 16:10:45 [error]: Batch 5 failed after 3 attempts
+2025-08-05 16:10:52 [warn]: Attempt 1 failed for batch 8: Unterminated string in JSON at position 8405 (line 170 column 72). Retrying in 1000ms...
+2025-08-05 16:10:54 [warn]: Attempt 1 failed for batch 7: Unterminated string in JSON at position 8555 (line 173 column 14). Retrying in 1000ms...
+2025-08-05 16:11:09 [warn]: Attempt 2 failed for batch 8: Unterminated string in JSON at position 8353 (line 163 column 89). Retrying in 2000ms...
+2025-08-05 16:11:09 [warn]: Attempt 1 failed for batch 9: Unterminated string in JSON at position 8514 (line 169 column 62). Retrying in 1000ms...
+2025-08-05 16:11:17 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:11:43 [warn]: Attempt 1 failed for batch 1: Expected double-quoted property name in JSON at position 8186 (line 124 column 34). Retrying in 1000ms...
+2025-08-05 16:12:04 [warn]: Attempt 2 failed for batch 1: Expected double-quoted property name in JSON at position 8186 (line 124 column 34). Retrying in 2000ms...
+2025-08-05 16:12:21 [error]: Batch 1 failed after 3 attempts
+2025-08-05 16:15:18 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:15:58 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:30:44 [warn]: Attempt 1 failed for batch 1: Expected double-quoted property name in JSON at position 9444 (line 229 column 32). Retrying in 1000ms...
+2025-08-05 16:30:44 [warn]: Attempt 1 failed for batch 2: Expected double-quoted property name in JSON at position 9610 (line 224 column 37). Retrying in 1000ms...
+2025-08-05 16:31:01 [warn]: Attempt 2 failed for batch 1: Expected double-quoted property name in JSON at position 9444 (line 229 column 32). Retrying in 2000ms...
+2025-08-05 16:31:01 [warn]: Attempt 2 failed for batch 2: Unterminated string in JSON at position 9594 (line 225 column 35). Retrying in 2000ms...
+2025-08-05 16:31:24 [error]: Batch 1 failed after 3 attempts
+2025-08-05 16:31:24 [error]: Batch 2 failed after 3 attempts
+2025-08-05 16:31:57 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:32:26 [warn]: Attempt 1 failed for batch 1: Expected double-quoted property name in JSON at position 9444 (line 229 column 32). Retrying in 1000ms...
+2025-08-05 16:32:26 [warn]: Attempt 1 failed for batch 2: Expected double-quoted property name in JSON at position 9578 (line 224 column 37). Retrying in 1000ms...
+2025-08-05 16:32:43 [warn]: Attempt 2 failed for batch 2: Unterminated string in JSON at position 9621 (line 224 column 35). Retrying in 2000ms...
+2025-08-05 16:32:44 [warn]: Attempt 2 failed for batch 1: Expected double-quoted property name in JSON at position 9444 (line 229 column 32). Retrying in 2000ms...
+2025-08-05 16:33:01 [error]: Batch 2 failed after 3 attempts
+2025-08-05 16:33:03 [error]: Batch 1 failed after 3 attempts
+2025-08-05 16:36:17 [warn]: Attempt 1 failed for batch 1: Expected double-quoted property name in JSON at position 9444 (line 229 column 32). Retrying in 1000ms...
+2025-08-05 16:36:41 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:37:09 [warn]: Attempt 1 failed for batch 1: Expected double-quoted property name in JSON at position 9444 (line 229 column 32). Retrying in 1000ms...
+2025-08-05 16:37:28 [warn]: Attempt 2 failed for batch 1: Expected double-quoted property name in JSON at position 9444 (line 229 column 32). Retrying in 2000ms...
+2025-08-05 16:37:47 [error]: Batch 1 failed after 3 attempts
+2025-08-05 16:38:00 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:39:56 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:40:16 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:41:42 [warn]: Attempt 1 failed for batch 1: Unterminated string in JSON at position 9486 (line 228 column 41). Retrying in 1000ms...
+2025-08-05 16:41:42 [warn]: Attempt 1 failed for batch 2: Unterminated string in JSON at position 9602 (line 223 column 39). Retrying in 1000ms...
+2025-08-05 16:41:42 [warn]: Attempt 1 failed for batch 4: Expected double-quoted property name in JSON at position 9253 (line 185 column 44). Retrying in 1000ms...
+2025-08-05 16:41:42 [warn]: Attempt 1 failed for batch 3: Unterminated string in JSON at position 9459 (line 215 column 297). Retrying in 1000ms...
+2025-08-05 16:41:42 [warn]: Attempt 1 failed for batch 5: Unexpected end of JSON input. Retrying in 1000ms...
+2025-08-05 16:41:59 [warn]: Attempt 2 failed for batch 5: Unexpected end of JSON input. Retrying in 2000ms...
+2025-08-05 16:42:02 [warn]: Attempt 2 failed for batch 1: Unterminated string in JSON at position 9486 (line 228 column 41). Retrying in 2000ms...
+2025-08-05 16:42:02 [warn]: Attempt 2 failed for batch 2: Unterminated string in JSON at position 9550 (line 216 column 43). Retrying in 2000ms...
+2025-08-05 16:42:02 [warn]: Attempt 2 failed for batch 4: Expected double-quoted property name in JSON at position 9253 (line 185 column 44). Retrying in 2000ms...
+2025-08-05 16:42:03 [warn]: Attempt 2 failed for batch 3: Unterminated string in JSON at position 9459 (line 215 column 297). Retrying in 2000ms...
+2025-08-05 16:42:20 [error]: Batch 5 failed after 3 attempts
+2025-08-05 16:42:25 [error]: Batch 1 failed after 3 attempts
+2025-08-05 16:42:25 [error]: Batch 2 failed after 3 attempts
+2025-08-05 16:42:25 [error]: Batch 4 failed after 3 attempts
+2025-08-05 16:42:25 [error]: Batch 3 failed after 3 attempts
+2025-08-05 16:42:40 [warn]: Attempt 1 failed for batch 6: Expected double-quoted property name in JSON at position 9307 (line 208 column 46). Retrying in 1000ms...
+2025-08-05 16:43:00 [warn]: Attempt 2 failed for batch 6: Expected double-quoted property name in JSON at position 9307 (line 208 column 46). Retrying in 2000ms...
+2025-08-05 16:43:22 [error]: Batch 6 failed after 3 attempts
+2025-08-05 16:44:01 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:45:02 [error]: Batch 1 failed after 3 attempts
+2025-08-05 16:45:32 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:47:00 [error]: Batch 1 failed after 3 attempts
+2025-08-05 16:47:10 [error]: SyntaxError: Expected ':' after property name in JSON at position 67 (line 5 column 10)
+    at JSON.parse (<anonymous>)
+    at parse (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/types/json.js:77:19)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:238:16)
+    at done (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:227:7)
+    at IncomingMessage.onEnd (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+2025-08-05 16:47:30 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:47:41 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:47:43 [error]: SyntaxError: Expected ':' after property name in JSON at position 67 (line 5 column 10)
+    at JSON.parse (<anonymous>)
+    at parse (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/types/json.js:77:19)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:238:16)
+    at done (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:227:7)
+    at IncomingMessage.onEnd (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+2025-08-05 16:48:13 [error]: SyntaxError: Expected ':' after property name in JSON at position 67 (line 5 column 10)
+    at JSON.parse (<anonymous>)
+    at parse (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/types/json.js:77:19)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:238:16)
+    at done (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:227:7)
+    at IncomingMessage.onEnd (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+2025-08-05 16:48:14 [error]: SyntaxError: Expected ':' after property name in JSON at position 67 (line 5 column 10)
+    at JSON.parse (<anonymous>)
+    at parse (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/types/json.js:77:19)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:238:16)
+    at done (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:227:7)
+    at IncomingMessage.onEnd (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+2025-08-05 16:48:34 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:48:46 [error]: SyntaxError: Expected ':' after property name in JSON at position 67 (line 5 column 10)
+    at JSON.parse (<anonymous>)
+    at parse (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/types/json.js:77:19)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:238:16)
+    at done (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:227:7)
+    at IncomingMessage.onEnd (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+2025-08-05 16:50:08 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/entities_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/entities_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/entities_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/entities_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:33:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:11:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 16:53:17 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:53:27 [error]: SyntaxError: Expected ':' after property name in JSON at position 67 (line 5 column 10)
+    at JSON.parse (<anonymous>)
+    at parse (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/types/json.js:77:19)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:238:16)
+    at done (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:227:7)
+    at IncomingMessage.onEnd (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+2025-08-05 16:54:49 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 16:55:17 [error]: SyntaxError: Expected ':' after property name in JSON at position 67 (line 5 column 10)
+    at JSON.parse (<anonymous>)
+    at parse (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/types/json.js:77:19)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/body-parser/lib/read.js:123:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:238:16)
+    at done (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:227:7)
+    at IncomingMessage.onEnd (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/node_modules/raw-body/index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at IncomingMessage.emit (node:domain:489:12)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+2025-08-05 16:56:05 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 18:53:49 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 18:56:18 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 19:30:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 19:43:36 [info]: 🚀 Server running at http://localhost:3000
+2025-08-05 20:20:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 20:30:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 20:40:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 21:10:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 21:20:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 21:50:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-05 22:00:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 13:29:35 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 13:30:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 13:40:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 13:41:09 [error]: Batch 1 failed after 3 attempts
+2025-08-06 13:59:32 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 14:00:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 14:04:11 [error]: Batch 1 failed after 3 attempts
+2025-08-06 14:04:11 [error]: Batch 2 failed after 3 attempts
+2025-08-06 14:05:38 [error]: Batch 1 failed after 3 attempts
+2025-08-06 14:05:38 [error]: Batch 2 failed after 3 attempts
+2025-08-06 14:07:04 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 14:12:32 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 14:14:16 [error]: Batch 1 failed after 3 attempts
+2025-08-06 14:14:16 [error]: Batch 2 failed after 3 attempts
+2025-08-06 14:15:47 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 14:16:33 [error]: TypeError: Cannot read properties of undefined (reading 'id')
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts:191:31
+    at Array.map (<anonymous>)
+    at DataCleanupService.generateUpdateSQL (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/services/azureOpenAi.ts:185:33)
+    at /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/dataCleanUp.controller.ts:142:27
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 14:20:54 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 14:28:55 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 14:30:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 18:17:58 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:20:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 18:28:09 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:30:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 18:37:59 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:40:06 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:43:59 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:46:57 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:49:26 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:49:49 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:50:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 18:52:53 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:53:29 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:57:31 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 18:59:45 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 19:40:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 19:50:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 19:52:48 [info]: 🚀 Server running at http://localhost:3000
+2025-08-06 20:00:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 20:30:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 20:40:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 20:50:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 21:00:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-06 21:10:05 [error]: PrismaClientInitializationError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7759)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-07 09:05:24 [info]: 🚀 Server running at http://localhost:3000
+2025-08-07 09:10:17 [info]: 🚀 Server running at http://localhost:3000
+2025-08-07 09:54:04 [info]: 🚀 Server running at http://localhost:3000
+2025-08-07 10:30:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-08-07 10:40:05 [error]: PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRaw()` invocation:
+
+
+Can't reach database server at `4.234.194.233:3308`
+
+Please make sure your database server is running at `4.234.194.233:3308`.
+    at ri.handleRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:7459)
+    at ri.handleAndLogRequestError (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6784)
+    at ri.request (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:124:6491)
+    at async l (/home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/generated/client/dms_prod/runtime/library.js:133:9812)
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:26:18
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/health.controller.ts:10:3
+    at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
