@@ -1,0 +1,111 @@
+[
+  {
+    "entity_id": 20735,
+    "type": 2,
+    "name": "Donal Stritch",
+    "trade_name": null,
+    "creator_ledger_id": 0,
+    "computed_phones": null,
+    "computed_addresses": null,
+    "computed_emails": null,
+    "prev_id": null,
+    "created_by": null,
+    "updated_by": null,
+    "created_at": {},
+    "updated_at": {},
+    "deleted_at": null,
+    "is_deleted": false,
+    "dups_ok": -1,
+    "people": [],
+    "address": [],
+    "entity_property_entity_property_entity_idToentity": []
+  },
+  {
+    "entity_id": 31458,
+    "type": 2,
+    "name": "Donal Stritch",
+    "trade_name": null,
+    "creator_ledger_id": 0,
+    "computed_phones": null,
+    "computed_addresses": null,
+    "computed_emails": null,
+    "prev_id": null,
+    "created_by": null,
+    "updated_by": null,
+    "created_at": {},
+    "updated_at": null,
+    "deleted_at": null,
+    "is_deleted": false,
+    "dups_ok": 0,
+    "people": [
+      {
+        "people_id": 56,
+        "entity_id": 31458,
+        "type": null,
+        "salutation": null,
+        "first_name": "Donal",
+        "last_name": "Stritch",
+        "title": null,
+        "date_of_birth": {},
+        "created_by": null,
+        "updated_by": null,
+        "created_at": {},
+        "updated_at": null,
+        "deleted_at": null
+      }
+    ],
+    "address": [
+      {
+        "address_id": 1030,
+        "entity_id": 31458,
+        "line_one": "Derrynana Cherrygrove",
+        "line_two": "Model Farm Road",
+        "area": null,
+        "city": null,
+        "state": null,
+        "zipcode": "Cork",
+        "country": "Ireland",
+        "country_code": "IE",
+        "ref_id": null,
+        "created_by": null,
+        "updated_by": null,
+        "created_at": {},
+        "updated_at": null,
+        "deleted_at": null,
+        "address_type": null
+      }
+    ],
+    "entity_property_entity_property_entity_idToentity": [
+      {
+        "entity_property_id": 11718,
+        "entity_id": 31458,
+        "parent_id": null,
+        "property_id": "email",
+        "property_refid": null,
+        "property_title": null,
+        "property_value": "ipseamon@gmail.com",
+        "is_primary": "No",
+        "position": 1,
+        "created_by": null,
+        "updated_by": null,
+        "created_at": {},
+        "updated_at": null
+      },
+      {
+        "entity_property_id": 611641,
+        "entity_id": 31458,
+        "parent_id": null,
+        "property_id": "phone_number",
+        "property_refid": null,
+        "property_title": "Office",
+        "property_value": "0035361469884",
+        "is_primary": "No",
+        "position": 1,
+        "created_by": null,
+        "updated_by": null,
+        "created_at": {},
+        "updated_at": {}
+      }
+    ]
+  }
+]

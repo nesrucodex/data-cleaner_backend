@@ -4,3 +4,10 @@ export type APIResponse<T> = {
   data?: T;
   error?: Error;
 };
+
+
+export type FindManyModel = {
+  findMany: (args: any) => Promise<any>;
+  update: (args: any) => Promise<any>;
+  count: () => Promise<number>;
+};

@@ -1,0 +1,11 @@
+{
+  "data": {
+    "action": "ENTITY_MERGE",
+    "entity_type": "entity",
+    "entity_id": 68290,
+    "old_value": "Merged from 1 duplicates",
+    "new_value": "Merged entity updated with 1 people, 2 addresses",
+    "note": "Applied client-submitted merge plan",
+    "created_at": "2025-08-19T10:11:53.679Z"
+  }
+}

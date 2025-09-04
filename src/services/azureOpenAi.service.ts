@@ -1,4 +1,3 @@
-// services/dataCleanupService.ts
 import { AzureOpenAI } from "openai";
 import {
   AZURE_OPENAI_KEY,
@@ -55,7 +54,6 @@ export class DataCleanupService {
 
     const jsonSizeInBytes = Buffer.byteLength(JSON.stringify(rows), "utf8");
 
-    console.log({ jsonSizeInBytes });
     const chunkCount = Math.ceil(jsonSizeInBytes / CONFIG.MAX_BYTES_PER_CHUNK);
 
     return Math.max(1, chunkCount);

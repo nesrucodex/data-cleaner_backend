@@ -42,6 +42,10 @@ const expressRouteErrorHandlerMiddleware: ErrorRequestHandler = (
       "Critical Prisma error: check database connection or environment config.";
   }
 
+  if (err?.code === "P1001") {
+    message = "Can't reach database server.";
+  }
+
   APIResponseWriter({
     res,
     statusCode,
