@@ -7,9 +7,9 @@ import expressAsyncWrapper from "../utils/asyncHandler";
 import RouteError from "../utils/routeErrors";
 import logger from "../libs/logger";
 import { DataSourceRouterService, RoutingDecision } from "../services/dataSourceRouter.service";
-import { NaturalLanguageQueryAIService } from "../services/naturalLanguageQueryAIService.service"; // for entities
-import { NaturalLanguageQueryAIServiceDMS } from "../services/naturalLanguageQueryAIService.dms.service"; // for DMS
-
+import { NaturalLanguageQueryAIService } from "../services/naturalLanguageQueryAIService.service";
+import { NaturalLanguageQueryAIServiceDMS } from "../services/naturalLanguageQueryAIService.dms.service";
+import { MarkdownSummaryAIService } from "../services/markdownSummaryAI.service";
 
 // utils/extractDatabaseError.ts
 export function extractDatabaseError(error: any): string {
@@ -18,11 +18,10 @@ export function extractDatabaseError(error: any): string {
     return "Unknown database error";
 }
 
-
 // === Types ===
 interface NaturalQueryRequestBody {
     question: string;
-    limit?: number;
+    limit?: number; // optional
 }
 
 // Maximum retries after execution failure
@@ -46,6 +45,29 @@ export const naturalLanguageQueryController = expressAsyncWrapper(
             userId: (req as any).user?.id || null,
         });
 
+        console.log({routingDecision})
+
+
+
+        // ✅ SHORT-CIRCUIT: If general question, return markdown immediately
+        if (routingDecision.target === "general" && routingDecision.markdownResponse) {
+            return APIResponseWriter({
+                res,
+                message: "General question answered",
+                statusCode: StatusCodes.OK,
+                success: true,
+                data: {
+                    markdown: routingDecision.markdownResponse,
+                },
+            });
+        }
+
+        // ❌ Handle edge case: general without markdown (shouldn’t happen)
+        if (routingDecision.target === "general") {
+            throw RouteError.BadRequest("General question detected but no response generated.");
+        }
+
+        // ✅ Handle unknown target
         if (routingDecision.target === "unknown") {
             throw RouteError.BadRequest(
                 routingDecision.reason || "Cannot determine which system contains this data. Please clarify your question."
@@ -85,20 +107,23 @@ export const naturalLanguageQueryController = expressAsyncWrapper(
                     userId: (req as any).user?.id || null,
                 });
 
+                // ✅ Generate AI-powered Markdown summary
+                const markdownService = new MarkdownSummaryAIService();
+                const markdownSummary = await markdownService.generateSummary({
+                    question: cleanedQuestion,
+                    sql: sqlToRun,
+                    results,
+                    errorFeedback: errorFeedbackLog,
+                    dataSource: routingDecision.target,
+                });
+
                 return APIResponseWriter({
                     res,
                     message: "Query executed successfully",
                     statusCode: StatusCodes.OK,
                     success: true,
                     data: {
-                        question: cleanedQuestion,
-                        explanation: queryPlan.explanation,
-                        sql: sqlToRun,
-                        results,
-                        dataSource: routingDecision.target,
-                        routingConfidence: routingDecision.confidence,
-                        correctionAttempts: attempts,
-                        errorFeedback: errorFeedbackLog,
+                        markdown: markdownSummary,
                     },
                 });
             } catch (error: any) {
@@ -133,18 +158,23 @@ export const naturalLanguageQueryController = expressAsyncWrapper(
             }
         }
 
-        // Final fallback: return error details
+        // ✅ FINAL FALLBACK: Still generate friendly Markdown even after failure
+        const markdownServiceFallback = new MarkdownSummaryAIService();
+        const fallbackMarkdown = await markdownServiceFallback.generateSummary({
+            question: cleanedQuestion,
+            sql: finalSql,
+            results: [],
+            errorFeedback: errorFeedbackLog,
+            dataSource: routingDecision.target,
+        });
+
         return APIResponseWriter({
             res,
             message: "Failed to execute query after multiple attempts.",
             statusCode: StatusCodes.BAD_REQUEST,
             success: false,
             data: {
-                question: cleanedQuestion,
-                explanation: "The query could not be executed due to persistent errors.",
-                finalSql: finalSql,
-                errorFeedback: errorFeedbackLog,
-                dataSource: routingDecision.target,
+                markdown: fallbackMarkdown,
             },
         });
     }

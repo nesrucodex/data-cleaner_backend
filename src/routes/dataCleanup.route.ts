@@ -3,11 +3,7 @@ import { Router } from "express";
 import {
   cleanupTableDataController,
   cleanupTableDataControllerTest,
-  // contactsAndAddressTablesCleanupController,
   dmsUsersNameCapitalizerController,
-  // getPotentialDuplicatePeopleGroupsController,
-  // getPotentialDuplicatePeopleGroupsTestController,
-  // getDuplicatePeopleByFullNameController,
   getDuplicateEntitiesByFullNameController,
   getDuplicateEntitiesByNameWithTypeController,
 } from "../controllers/dataCleanUp.controller";
@@ -23,24 +19,6 @@ const router = Router();
 router.post("/", cleanupTableDataController);
 router.post("/test", cleanupTableDataControllerTest);
 router.post("/dms/capitalize-names", dmsUsersNameCapitalizerController);
-// router.get("/dms/duplicates", dataDuplicationController);
-// router.get(
-//   "/people/duplicates/analyze",
-//   getPotentialDuplicatePeopleGroupsController
-// );
-
-
-// router.post(
-//   "/entities/duplicates/analyze/test",
-//   // getPotentialDuplicateEntitiesGroupsTestController
-// );
-
-// router.post(
-//   "/people/duplicates/analyze/test",
-//   getPotentialDuplicatePeopleGroupsTestController
-// );
-
-// router.get("/people/similar/by-name", getDuplicatePeopleByFullNameController);
 
 router.get(
   "/entities/similar/by-name",
@@ -68,7 +46,6 @@ router.post(
   "/entities/resolve-duplicates",
   applyEntitiesDuplicateMergeController
 );
-
 
 // !
 
