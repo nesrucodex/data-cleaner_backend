@@ -181,3 +181,4 @@ Please make sure your database server is running at `4.234.194.233:3308`.
     at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/config/db.ts:33:18
     at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/controllers/dataCleanUp.controller.ts:775:22
     at async /home/nesrucodex/Desktop/upwork_projects/azure-data-cleaner/src/utils/asyncHandler.ts:24:7
+2025-09-12 20:21:04 [info]: 🚀 Server running at http://localhost:3003
